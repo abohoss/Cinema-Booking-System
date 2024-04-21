@@ -16,22 +16,21 @@ cursor = conn.cursor()
 # Create the Customer table
 create_table_query = '''
     CREATE TABLE Reserve (
-        Transaction_Id INT PRIMARY KEY,
+        Transaction_Id INT,
         Seat_Row INT,
         Seat_Column INT,
         Show_Time Time,
         Show_Date DATE,
-        Hall_id INT,
+        Hall_Id INT,
+        Seat_Hall INT,
+        MovieName VARCHAR(100),
         Customer_Email VARCHAR(100),
         price FLOAT,
         type VARCHAR(50),
-
+        constraint pk_reserve primary key (Transaction_Id,Seat_Row,Seat_Column,Show_Time,Show_Date,Hall_Id,Seat_Hall,MovieName,Customer_Email),
         constraint fk_transactionid foreign key (Transaction_Id) references [Transaction](TransactionID),
-        constraint fk_seat_row foreign key (Seat_Row) references Seat(Row),
-        constraint fk_seat_column foreign key (Seat_Column) references Seat(SeatNo),
-        constraint fk_show_time foreign key (Show_Time) references ShowTime(Time),
-        constraint fk_show_date foreign key (Show_Date) references ShowTime(Date),
-        constraint fk_hall_id foreign key (Hall_id) references Hall(Hall_Num),
+        constraint fk_seat foreign key (Seat_Row,Seat_Column,Seat_Hall) references Seat(Row,SeatNo,Hall_no),
+        constraint fk_showtime foreign key (Show_Time,Show_Date,MovieName,Hall_Id) references ShowTime(Time,Date,Movie_Name,Hall_Number),
         constraint fk_email foreign key (Customer_Email) references Customer(Email),
 
     )
