@@ -1,5 +1,6 @@
 import pyodbc
-class showTime:
+
+class Showtime:
     def __init__(self,Time, Date,Movie,Hall):
         self.Time=Time
         self.Date=Date
