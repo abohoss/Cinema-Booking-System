@@ -7,7 +7,7 @@ class showTime:
         self.Hall=Hall
 
 # Connect to the SQL Server database
-conn = pyodbc.connect('Driver={SQL Server};Server=DESKTOP-T4EV4IC;Database=Cinema')
+conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
 
 # Create a cursor object to execute SQL statements
 cursor = conn.cursor()
@@ -18,10 +18,10 @@ create_table_query = '''
         Time TIME,
         Date DATE,
         Movie_Name VARCHAR(100),
-        Hall_Num INT,
-        PRIMARY KEY (Time, Date, Movie_Name,Hall_Num),
+        Hall_Number INT,
+        PRIMARY KEY (Time, Date, Movie_Name,Hall_Number),
         FOREIGN KEY (Movie_Name) REFERENCES Movie(Name),
-        FOREIGN KEY (Hall_Num) REFERENCES Hall(Hall_No)
+        FOREIGN KEY (Hall_Number) REFERENCES Hall(Hall_Num)
     )
 '''
 

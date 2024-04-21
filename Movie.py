@@ -7,7 +7,7 @@ class Movie:
         self.Cast = Cast
 
 # Connect to the SQL Server database
-conn = pyodbc.connect('Driver={SQL Server};Server=DESKTOP-T4EV4IC;Database=Cinema')
+conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
 
 # Create a cursor object to execute SQL statements
 cursor = conn.cursor()
@@ -16,7 +16,7 @@ cursor = conn.cursor()
 create_table_query = '''
     CREATE TABLE Movie (
         
-        VARCHAR(100) PRIMARY KEY,
+        Name VARCHAR(100) PRIMARY KEY,
         Description VARCHAR(255),
         Genre VARCHAR(50),
         Employee_Id INT,

@@ -6,7 +6,7 @@ class Hall:
         self.seats =seats
         
 # Connect to the SQL Server database
-conn = pyodbc.connect('Driver={SQL Server};Server=DESKTOP-T4EV4IC;Database=Cinema')
+conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
 
 # Create a cursor object to execute SQL statements
 cursor = conn.cursor()
@@ -14,7 +14,7 @@ cursor = conn.cursor()
 # Create the Hall table
 create_table_query = '''
     CREATE TABLE Hall (
-        Hall_No INT PRIMARY KEY,
+        Hall_Num INT PRIMARY KEY,
         Screen_Type VARCHAR(50)
     )
 '''

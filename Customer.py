@@ -10,7 +10,7 @@ class Customer:
         self.password = password
 
     # Connect to the SQL Server database
-conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-T4EV4IC};Database={Cinema}')
+conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
 
 # Create a cursor object to execute SQL statements
 cursor = conn.cursor()
@@ -22,9 +22,9 @@ create_table_query = '''
         firstName VARCHAR(50),
         lastName VARCHAR(50),
         Age INT,
-        Gender VARCHAR(10),
-        phoneNumber VARCHAR(15),
-        password VARCHAR(100)
+        Gender VARCHAR(6),
+        phoneNumber VARCHAR(11),
+        Password VARCHAR(100)
     )
 '''
 

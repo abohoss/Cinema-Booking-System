@@ -7,7 +7,7 @@ class Transaction:
         self.paymentType = paymentType
         
 # Connect to the SQL Server database
-conn = pyodbc.connect('Driver={SQL Server};Server=DESKTOP-T4EV4IC;Database=Cinema')
+conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
 
 # Create a cursor object to execute SQL statements
 cursor = conn.cursor()
@@ -17,8 +17,11 @@ create_table_query = '''
     CREATE TABLE [Transaction] (
         TransactionID INT PRIMARY KEY,
         Price Float,
-        Date DATE,
-        PaymentType VARCHAR(50)
+        Transaction_Date DATE,
+        PaymentType VARCHAR(50),
+        Customer_Email VARCHAR(100),
+
+        constraint fk_Customer_Email foreign key (Customer_Email) references Customer(Email)
     )
 '''
 

@@ -5,7 +5,7 @@ class Manage_Halls:
         self.Hall =Hall
         
 # Connect to the SQL Server database
-conn = pyodbc.connect('Driver={SQL Server};Server=DESKTOP-T4EV4IC;Database=Cinema')
+conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
 
 # Create a cursor object to execute SQL statements
 cursor = conn.cursor()
@@ -13,11 +13,11 @@ cursor = conn.cursor()
 # Create the Employee table
 create_table_query = '''
         CREATE TABLE Manage_Halls (
-            hall_number INT,
+            Hall_Number INT,
             Manager_Id INT,
-            PRIMARY KEY (Manager_Id, hall_number),
+            PRIMARY KEY (Manager_Id, Hall_Number),
             FOREIGN KEY (Manager_Id) REFERENCES Employee(Emp_Id),
-            FOREIGN KEY (hall_number) REFERENCES Hall(Hall_No)
+            FOREIGN KEY (Hall_Number) REFERENCES Hall(Hall_Num)
     )
 '''
 

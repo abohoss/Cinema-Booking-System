@@ -7,7 +7,7 @@ class Rate:
         self.customer = customer
         
 # Connect to the SQL Server database
-conn = pyodbc.connect('Driver={SQL Server};Server=DESKTOP-T4EV4IC;Database=Cinema')
+conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
 
 # Create a cursor object to execute SQL statements
 cursor = conn.cursor()
@@ -15,11 +15,11 @@ cursor = conn.cursor()
 # Create the Hall table
 create_table_query = '''
     CREATE TABLE Rate (
-        rating INT CHECK (rating >= 0 AND rating <= 5),
-        comment VARCHAR(250),
         MovieName VARCHAR(100),
         CustomerEmail VARCHAR(100),
-        PRIMARY KEY (Name,Email),
+        Rating INT CHECK (rating >= 0 AND rating <= 5),
+        Comment VARCHAR(250),
+        PRIMARY KEY (MovieName,CustomerEmail),
         FOREIGN KEY (MovieName) REFERENCES Movie(Name),
         FOREIGN KEY (CustomerEmail) REFERENCES Customer(Email)    
     )

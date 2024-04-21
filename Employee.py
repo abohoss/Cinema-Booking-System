@@ -10,7 +10,7 @@ class Employee:
         self.Building_no=Building_no
         self.Apartment_no=Apartment_no
 # Connect to the SQL Server database
-conn = pyodbc.connect('Driver={SQL Server};Server=DESKTOP-T4EV4IC;Database=Cinema')
+conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
 
 # Create a cursor object to execute SQL statements
 cursor = conn.cursor()
@@ -19,13 +19,13 @@ cursor = conn.cursor()
 create_table_query = '''
         CREATE TABLE Employee (
             Emp_id INT PRIMARY KEY,
-            Fname VARCHAR(50),
-            Lname VARCHAR(50),
+            firstName VARCHAR(50),
+            lastName VARCHAR(50),
             Salary DECIMAL(10, 2),
             Role VARCHAR(50),
-            Street_Name VARCHAR(100),
-            Building_no INT,
-            Apartment_no INT
+            streetName VARCHAR(100),
+            buildingNumber INT,
+            apartmentNumber INT
     )
 '''
 
