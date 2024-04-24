@@ -11,7 +11,6 @@ CREATE PROCEDURE CreateCustomerAccount
     @Password VARCHAR(100)
 AS
 BEGIN
-    SET NOCOUNT ON;
 
     INSERT INTO Customer (Email, firstName, lastName, Age, Gender, phoneNumber, Password)
     VALUES (@Email, @FirstName, @LastName, @Age, @Gender, @PhoneNumber, @Password);
@@ -22,7 +21,6 @@ CREATE PROCEDURE CustomerLogin
     @Password VARCHAR(100)
 AS
 BEGIN
-    SET NOCOUNT ON;
 
     SELECT COUNT(*) AS Count
     FROM Customer
@@ -42,7 +40,6 @@ CREATE PROCEDURE CreateEmployeeAccount
     @ApartmentNumber INT
 AS
 BEGIN
-    SET NOCOUNT ON;
 
     INSERT INTO Employee (Emp_id, firstName, lastName, Salary, Role, streetName, buildingNumber, apartmentNumber)
     VALUES (@EmpId, @FirstName, @LastName, @Salary, @Role, @StreetName, @BuildingNumber, @ApartmentNumber);
@@ -87,3 +84,42 @@ BEGIN
     JOIN Cast C ON M.Name = C.MovieName;
 END
 go
+------------------------------------------Showtime Procedures----------------------------------------------------------------
+CREATE PROCEDURE AddShowTime
+  @Time TIME,
+  @Date DATE,
+  @MovieName VARCHAR(100),
+  @HallNumber INT
+AS
+BEGIN
+  INSERT INTO ShowTime (Time, Date, Movie_Name, Hall_Number)
+  VALUES (@Time, @Date, @MovieName, @HallNumber);
+END;
+------------------------------------------Reserve+Transaction Procedures----------------------------------------------------------------
+CREATE PROCEDURE ReserveTicket
+  @TransactionDate DATE,
+  @PaymentType VARCHAR(50),
+  @CustomerEmail VARCHAR(100),
+  @SeatRow INT,
+  @SeatColumn INT,
+  @ShowTime TIME,
+  @ShowDate DATE,
+  @HallId INT,
+  @SeatHall INT,
+  @MovieName VARCHAR(100),
+  @ReservePrice FLOAT,
+  @ReserveType VARCHAR(50)
+AS
+BEGIN
+  DECLARE @TransactionId INT;
+
+  -- Insert into Transaction table
+  INSERT INTO [Transaction] (Price, Transaction_Date, PaymentType, Customer_Email)
+  VALUES (@ReservePrice, @TransactionDate, @PaymentType, @CustomerEmail);
+
+  SET @TransactionId = SCOPE_IDENTITY(); -- Retrieve the automatically generated TransactionID
+
+  -- Insert into Reserve table
+  INSERT INTO Reserve (Transaction_Id, Seat_Row, Seat_Column, Show_Time, Show_Date, Hall_Id, Seat_Hall, MovieName, Customer_Email, price, type)
+  VALUES (@TransactionId, @SeatRow, @SeatColumn, @ShowTime, @ShowDate, @HallId, @SeatHall, @MovieName, @CustomerEmail, @ReservePrice, @ReserveType);
+END;
