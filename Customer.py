@@ -1,70 +1,39 @@
 import pyodbc
-# class Customer:
-#     def __init__(self,firstName,lastName,Age,Gender,phoneNumber,Email,password):
-#         self.firstName = firstName
-#         self.lastName = lastName
-#         self.Age = Age
-#         self.Gender = Gender
-#         self.phoneNumber = phoneNumber
-#         self.Email = Email(unique=True)
-#         self.password = password
 
-# # Connect to the SQL Server database
-# conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
+class Customer:
+    def __init__(self, firstName, lastName, Age, Gender, phoneNumber, Email, password):
+        self.firstName = firstName
+        self.lastName = lastName
+        self.Age = Age
+        self.Gender = Gender
+        self.phoneNumber = phoneNumber
+        self.Email = Email
+        self.password = password
 
-# # Create a cursor object to execute SQL statements
-# cursor = conn.cursor()
+#-------------------------------------------------------------------------------------------------
+def create_customer_account(customer):
+    cursor.execute("EXEC CreateCustomerAccount ?, ?, ?, ?, ?, ?, ?",
+                   customer.Email, customer.firstName, customer.lastName, customer.Age,
+                   customer.Gender, customer.phoneNumber, customer.password)
+    cursor.commit()
 
-# # Create the Customer table
-# create_table_query = '''
-#     CREATE TABLE Customer (
-#         Email VARCHAR(100) PRIMARY KEY,
-#         firstName VARCHAR(50),
-#         lastName VARCHAR(50),
-#         Age INT,
-#         Gender VARCHAR(6),
-#         phoneNumber VARCHAR(11),
-#         Password VARCHAR(100)
-#     )
-# '''
+def customer_login(email, password):
+    cursor.execute("EXEC CustomerLogin ?, ?", email, password)
+    count = cursor.fetchone()[0]
+    return count == 1
+#-------------------------------------------------------------------------------------------------
+# Connect to the SQL Server database
+conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
+cursor = conn.cursor()
 
-# cursor.execute(create_table_query)
-# conn.commit()
 
-# # Close the connection
-# conn.close()
-    
-def create_account(firstName, lastName, Age, Gender, phoneNumber, Email, password):
-    conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
+# customer = Customer(firstName='Mark', lastName='Salah', Age=19, Gender='Male',
+#                     phoneNumber='01110101010', Email='Mark.Saleh@gmail.com', password='145')
 
-    cursor = conn.cursor()
+# create_customer_account(customer)
 
-    insert_query = '''
-        INSERT INTO Customer (Email, firstName, lastName, Age, Gender, phoneNumber, Password)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-    '''
-    cursor.execute(insert_query, (Email, firstName, lastName, Age, Gender, phoneNumber, password))
-    conn.commit()
+login_result = customer_login('Mark.Saleh@gmail.com', '145')
+print("Login Successful!" if login_result else "Login Failed!")
 
-    conn.close()
-
-def login(email, password):
-    
-    conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
-
-    cursor = conn.cursor()
-
-    select_query = '''
-        SELECT * FROM Customer
-        WHERE Email = ? AND Password = ?
-    '''
-    cursor.execute(select_query, (email, password))
-
-    result = cursor.fetchone()
-
-    conn.close()
-
-    return result
-
-create_account('Yehia', 'Sakr',19,'Male','01111831343','Yehiasakr@gmail.com','1234')
-print(login('Yehiasakr@gmail.com','1234'))
+# Close the connection
+conn.close()
