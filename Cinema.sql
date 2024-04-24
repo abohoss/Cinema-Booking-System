@@ -111,3 +111,35 @@ CREATE TABLE Reserve (
         constraint fk_email foreign key (Customer_Email) references Customer(Email),
 
 );
+
+Insert Into Hall  (Hall_Num,Screen_Type)
+values (1,'Standard'),(2,'Standard'),(3,'IMAX'),(4,'IMAX')
+
+
+-- Inserting data into the Seat table
+INSERT INTO Seat (Row, SeatNo, SeatType, Hall_no, Booked)
+VALUES
+  -- First Hall
+  (1, 1, 'Regular', 1, 0),(1, 2, 'Regular', 1, 0),(1, 3, 'Regular', 1, 0),(1, 4, 'Regular', 1, 0),(1, 5, 'Regular', 1, 0),
+  (2, 1, 'Regular', 1, 0),(2, 2, 'Regular', 1, 0),(2, 3, 'Regular', 1, 0),(2, 4, 'Regular', 1, 0),(2, 5, 'Regular', 1, 0),
+  (3, 1, 'Premium', 1, 0),(3, 2, 'Premium', 1, 0),(3, 3, 'Premium', 1, 0),(3, 4, 'Premium', 1, 0),(3, 5, 'Premium', 1, 0),
+  (4, 1, 'Premium', 1, 0),(4, 2, 'Premium', 1, 0),(4, 3, 'Premium', 1, 0),(4, 4, 'Premium', 1, 0),(4, 5, 'Premium', 1, 0),
+  
+  -- Second Hall
+  (1, 1, 'Regular', 2, 0),(1, 2, 'Regular', 2, 0),(1, 3, 'Regular', 2, 0),(1, 4, 'Regular', 2, 0),(1, 5, 'Regular', 2, 0),
+  (2, 1, 'Regular', 2, 0),(2, 2, 'Regular', 2, 0),(2, 3, 'Regular', 2, 0),(2, 4, 'Regular', 2, 0),(2, 5, 'Regular', 2, 0),
+  (3, 1, 'Premium', 2, 0),(3, 2, 'Premium', 2, 0),(3, 3, 'Premium', 2, 0),(3, 4, 'Premium', 2, 0),(3, 5, 'Premium', 2, 0),
+  (4, 1, 'Premium', 2, 0),(4, 2, 'Premium', 2, 0),(4, 3, 'Premium', 2, 0),(4, 4, 'Premium', 2, 0),(4, 5, 'Premium', 2, 0),
+  -- Third Hall
+  (1, 1, 'Regular', 3, 0),(1, 2, 'Regular', 3, 0),(1, 3, 'Regular', 3, 0),(1, 4, 'Regular', 3, 0),(1, 5, 'Regular', 3, 0),
+  (2, 1, 'Regular', 3, 0),(2, 2, 'Regular', 3, 0),(2, 3, 'Regular', 3, 0),(2, 4, 'Regular', 3, 0),(2, 5, 'Regular', 3, 0),
+  (3, 1, 'Premium', 3, 0),(3, 2, 'Premium', 3, 0),(3, 3, 'Premium', 3, 0),(3, 4, 'Premium', 3, 0),(3, 5, 'Premium', 3, 0),
+  (4, 1, 'Premium', 3, 0),(4, 2, 'Premium', 3, 0),(4, 3, 'Premium', 3, 0),(4, 4, 'Premium', 3, 0),(4, 5, 'Premium', 3, 0),
+  -- Fourth Hall
+  (1, 1, 'Regular', 4, 0),(1, 2, 'Regular', 4, 0),(1, 3, 'Regular', 4, 0),(1, 4, 'Regular', 4, 0),(1, 5, 'Regular', 4, 0),
+  (2, 1, 'Regular', 4, 0),(2, 2, 'Regular', 4, 0),(2, 3, 'Regular', 4, 0),(2, 4, 'Regular', 4, 0),(2, 5, 'Regular', 4, 0),
+  (3, 1, 'Premium', 4, 0),(3, 2, 'Premium', 4, 0),(3, 3, 'Premium', 4, 0),(3, 4, 'Premium', 4, 0),(3, 5, 'Premium', 4, 0),
+  (4, 1, 'Premium', 4, 0),(4, 2, 'Premium', 4, 0),(4, 3, 'Premium', 4, 0),(4, 4, 'Premium', 4, 0),(4, 5, 'Premium', 4, 0)
+    
+
+
