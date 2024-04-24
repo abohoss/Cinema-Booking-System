@@ -65,13 +65,13 @@ CREATE TABLE ShowTime (
 );
 
 CREATE TABLE [Transaction] (
-    TransactionID INT PRIMARY KEY,
-    Price Float,
+    TransactionID INT IDENTITY(1,1) PRIMARY KEY,
+    Price FLOAT,
     Transaction_Date DATE,
     PaymentType VARCHAR(50),
     Customer_Email VARCHAR(100),
 
-    constraint fk_Customer_Email foreign key (Customer_Email) references Customer(Email)
+    CONSTRAINT fk_Customer_Email FOREIGN KEY (Customer_Email) REFERENCES Customer(Email)
 );
 
 CREATE TABLE Rate (
