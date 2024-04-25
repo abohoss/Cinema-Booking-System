@@ -24,32 +24,24 @@ def customer_login(email, password):
     return count == 1
 #-------------------------------------------------------------------------------------------------
 
-def ReserveTicket(customer,time,date,hallid,MovieName,seats,reservetype,paymenttype):
-    cursor.execute("select Screen_type from Hall where Hall_Num = ?",hallid)
-    screen_type = cursor.fetchone()[0]
-    price = 0
+def ReserveTicket(customer, time, date, hallid, MovieName, seats, reservetype, paymenttype):
+        cursor.execute("SELECT Screen_type FROM Hall WHERE Hall_Num = ?", hallid)
+        screen_type = cursor.fetchone()[0]
+        price = 0
+        seat_str = ','.join(str(seat) for seat in seats)
+        for seat in seats:
+            cursor.execute("SELECT SeatType FROM Seat WHERE Seat_ID = ?", seat)
+            seattype = cursor.fetchone()[0]
+            price += PriceDict[seattype] + PriceDict[screen_type]
 
-    for seat in seats:
-        cursor.execute("select SeatType from Seat where Seat_ID = ?",seat)
-        seattype = cursor.fetchone()[0]
-        price += PriceDict[seattype]+PriceDict[screen_type]
-            
-                
-    sql_query = "DECLARE @Reserve_Id INT; EXEC ReserveTicket ?, ?, ?, ?, ?, ?, ?, ?, @Reserve_Id OUTPUT; SELECT @Reserve_Id"
+        # Execute the SQL procedure
+        cursor.execute("EXEC ReserveTicket ?, ?, ?, ?, ?, ?, ?, ?, ?", time, date, hallid, MovieName,
+                       customer.Email, paymenttype, price, reservetype, seat_str)
 
-    # Execute the stored procedure with parameters
-    cursor.execute(sql_query, paymenttype, customer.Email, time, date, hallid, MovieName, price, reservetype)
+        # Commit the transaction
+        cursor.commit()
+        print("Reservation successful!")
 
-    # Fetch the output parameter value (ReserveNo)
-    ReserveId = cursor.fetchone()[0]
-
-    # cursor.execute("EXEC ReserveTicket ?, ?, ?, ?, ?, ?, ?, ?", paymenttype, customer.Email,time, date, hallid, MovieName, price,reservetype)
-    # ReserveId = cursor.fetchval()
-
-    for seat in seats:
-        cursor.execute("EXEC ReserveSeat ?, ?, ?, ?",ReserveId,seat,hallid)
-
-    cursor.commit()
 
 
 # Connect to the SQL Server database
@@ -65,7 +57,7 @@ customer = Customer(firstName='Mark', lastName='Salah', Age=19, Gender='Male',
 login_result = customer_login('Mark.Saleh@gmail.com', '145')
 print("Login Successful!" if login_result else "Login Failed!")
 
-ReserveTicket(customer,'20:00','2024-05-01',1,'The Avengers',[1,2,3,4],'Regular','Credit Card')
+ReserveTicket(customer,'20:00','2024-05-01',1,'The Avengers',[1,2,3],'Premium','Credit Card')
 
 # Close the connection
 conn.close()
