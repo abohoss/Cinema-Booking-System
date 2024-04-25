@@ -12,19 +12,19 @@ class Customer:
 
 PriceDict = {'Regular': 30, 'Premium': 50,'Standard':70, 'IMAX': 100}
 #-------------------------------------------------------------------------------------------------
-def create_customer_account(customer):
+def create_customer_account(customer,cursor):
     cursor.execute("EXEC CreateCustomerAccount ?, ?, ?, ?, ?, ?, ?",
                    customer.Email, customer.firstName, customer.lastName, customer.Age,
                    customer.Gender, customer.phoneNumber, customer.password)
     cursor.commit()
 
-def customer_login(email, password):
+def customer_login(email, password,cursor):
     cursor.execute("EXEC CustomerLogin ?, ?", email, password)
     count = cursor.fetchone()[0]
     return count == 1
 #-------------------------------------------------------------------------------------------------
 
-def ReserveTicket(customer, time, date, hallid, MovieName, seats, reservetype, paymenttype):
+def ReserveTicket(customer, time, date, hallid, MovieName, seats, reservetype, paymenttype,cursor):
         cursor.execute("SELECT Screen_type FROM Hall WHERE Hall_Num = ?", hallid)
         screen_type = cursor.fetchone()[0]
         price = 0
@@ -44,20 +44,20 @@ def ReserveTicket(customer, time, date, hallid, MovieName, seats, reservetype, p
 
 
 
-# Connect to the SQL Server database
-conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
-cursor = conn.cursor()
+# # Connect to the SQL Server database
+# conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
+# cursor = conn.cursor()
 
 
-customer = Customer(firstName='Mark', lastName='Salah', Age=19, Gender='Male',
-                    phoneNumber='01110101010', Email='Mark.Saleh@gmail.com', password='145')
+# customer = Customer(firstName='Mark', lastName='Salah', Age=19, Gender='Male',
+#                     phoneNumber='01110101010', Email='Mark.Saleh@gmail.com', password='145')
 
-create_customer_account(customer)
+# create_customer_account(customer)
 
-login_result = customer_login('Mark.Saleh@gmail.com', '145')
-print("Login Successful!" if login_result else "Login Failed!")
+# login_result = customer_login('Mark.Saleh@gmail.com', '145')
+# print("Login Successful!" if login_result else "Login Failed!")
 
-ReserveTicket(customer,'20:00','2024-05-01',1,'The Avengers',[1,2,3],'Premium','Credit Card')
+# ReserveTicket(customer,'20:00','2024-05-01',1,'The Avengers',[1,2,3],'Premium','Credit Card')
 
-# Close the connection
-conn.close()
+# # Close the connection
+# conn.close()

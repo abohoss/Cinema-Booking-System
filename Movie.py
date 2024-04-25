@@ -8,11 +8,11 @@ class Movie:
         self.EmpId = EmpId
         self.Cast = Cast
 
-def add_movie(movie):
+def add_movie(movie,cursor):
         cursor.execute("EXEC AddMovie ?, ?, ?, ?, ?", movie.Name, movie.Description, movie.Genre, movie.EmpId, movie.Cast)
-        conn.commit()
+        cursor.commit()
 
-def list_movies():
+def list_movies(cursor):
         cursor.execute("EXEC ListMovies")
 
         rows = cursor.fetchall()
@@ -26,14 +26,14 @@ def list_movies():
 
 
 #---------------------------------------------------------------------------------------------------------------------------#
-# Connect to the SQL Server database
-conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
-cursor = conn.cursor()
+# # Connect to the SQL Server database
+# conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
+# cursor = conn.cursor()
 
-movie = Movie(Name='The Avengers', Description='Superhero movie', Genre='Action', EmpId=1, Cast='Robert Downey Jr., Chris Evans, Scarlett Johansson')
-add_movie(movie)
+# movie = Movie(Name='The Avengers', Description='Superhero movie', Genre='Action', EmpId=1, Cast='Robert Downey Jr., Chris Evans, Scarlett Johansson')
+# add_movie(movie)
 
-list_movies()
+# list_movies()
 
-# Close the connection
-conn.close()
+# # Close the connection
+# conn.close()
