@@ -23,6 +23,7 @@ BEGIN
     INSERT INTO Customer (Email, firstName, lastName, Age, Gender, phoneNumber, Password)
     VALUES (@Email, @FirstName, @LastName, @Age, @Gender, @PhoneNumber, @Password);
 END;
+go
 
 CREATE PROCEDURE CustomerLogin
     @Email VARCHAR(100),
@@ -36,7 +37,6 @@ BEGIN
 END;
 GO
 ---------------------------------------Employee Procedures--------------------------------------------------
-
 CREATE PROCEDURE CreateEmployeeAccount
     @EmpId INT,
     @FirstName VARCHAR(50),
@@ -45,9 +45,11 @@ CREATE PROCEDURE CreateEmployeeAccount
     @Role VARCHAR(50),
     @StreetName VARCHAR(100),
     @BuildingNumber INT,
-    @ApartmentNumber INT
+    @ApartmentNumber INT,
+    @Password VARCHAR(100)
 AS
 BEGIN
+
         -- Check if the employee already exists
         IF EXISTS (SELECT 1 FROM Employee WHERE Emp_id = @EmpId)
         BEGIN
@@ -56,9 +58,21 @@ BEGIN
         END
 
         -- Insert the employee record
-        INSERT INTO Employee (Emp_id, firstName, lastName, Salary, Role, streetName, buildingNumber, apartmentNumber)
-        VALUES (@EmpId, @FirstName, @LastName, @Salary, @Role, @StreetName, @BuildingNumber, @ApartmentNumber);
+        INSERT INTO Employee (Emp_id, firstName, lastName, Salary, Role, streetName, buildingNumber, apartmentNumber, Password)
+        VALUES (@EmpId, @FirstName, @LastName, @Salary, @Role, @StreetName, @BuildingNumber, @ApartmentNumber, @Password);
 END;
+go
+CREATE PROCEDURE EmployeeLogin
+    @id INT,
+    @Password VARCHAR(100)
+AS
+BEGIN
+
+    SELECT COUNT(*) AS Count
+    FROM Employee
+    WHERE Emp_Id = @id AND Password = @Password;
+END;
+GO
 ------------------------------------------Test----------------------------------------------------------------
 EXEC CreateCustomerAccount
     @Email = 'Yehiasakr@gmail.com',
@@ -100,7 +114,7 @@ BEGIN
     FROM STRING_SPLIT(@Cast, ',');
 
 END;
-
+go
 CREATE PROCEDURE ListMovies
 AS
 BEGIN
