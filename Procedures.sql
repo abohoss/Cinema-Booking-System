@@ -68,22 +68,25 @@ CREATE PROCEDURE AddMovie
     @Cast NVARCHAR(MAX)
 AS
 BEGIN
+    -- Insert the movie into the Movie table
     INSERT INTO Movie (Name, Description, Genre, Employee_Id)
     VALUES (@Name, @Description, @Genre, @EmployeeId);
 
+    -- Insert the cast members into the Cast table
     INSERT INTO Cast (MovieName, Actors)
-    VALUES (@Name, @Cast);
+    SELECT @Name, value
+    FROM STRING_SPLIT(@Cast, ',');
 END
-go
 
 CREATE PROCEDURE ListMovies
 AS
 BEGIN
-    SELECT M.Name, M.Description, M.Genre, C.Actors
+    SELECT M.Name, M.Description, M.Genre,
+        STRING_AGG(C.Actors, ', ') AS Actors
     FROM Movie M
-    JOIN Cast C ON M.Name = C.MovieName;
+    JOIN Cast C ON M.Name = C.MovieName
+    GROUP BY M.Name, M.Description, M.Genre;
 END
-go
 ------------------------------------------Showtime Procedures----------------------------------------------------------------
 CREATE PROCEDURE AddShowTime
   @Time TIME,
@@ -123,7 +126,7 @@ BEGIN
 
   SET @Reserve_No = SCOPE_IDENTITY(); -- Assign Reserve_No to output parameter
 END;
-
+go
 
 create procedure ReserveSeat
 	@ReserveID INT,
@@ -140,3 +143,24 @@ BEGIN
 	where Seat.Seat_ID = @Seat_No and Seat.Hall_no = @Seat_Hall
 END;
 go
+-------------------------------------------------Reserve Test-----------------------------------------------
+DECLARE @Reserve_Id INT;
+
+EXEC dbo.ReserveTicket
+    @PaymentType = 'Credit Card',
+    @CustomerEmail= 'Yehiasakr@gmail.com',
+    @ShowTime= '20:00',
+    @ShowDate = '2024-05-01',
+    @HallId = 1,
+    @MovieName = 'The Avengers',
+    @ReservePrice = 50,
+    @ReserveType = 'Premium',
+    @Reserve_No = @Reserve_Id OUTPUT;
+
+SELECT @Reserve_Id AS ReserveId;
+
+
+Exec dbo.ReserveSeat
+	@ReserveID =@Reserve_Id,
+	@Seat_No = 1,
+	@Seat_Hall=1
