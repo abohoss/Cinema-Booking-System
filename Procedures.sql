@@ -36,7 +36,6 @@ BEGIN
 END;
 GO
 ---------------------------------------Employee Procedures--------------------------------------------------
-
 CREATE PROCEDURE CreateEmployeeAccount
     @EmpId INT,
     @FirstName VARCHAR(50),
@@ -48,11 +47,17 @@ CREATE PROCEDURE CreateEmployeeAccount
     @ApartmentNumber INT
 AS
 BEGIN
+        -- Check if the employee already exists
+        IF EXISTS (SELECT 1 FROM Employee WHERE Emp_id = @EmpId)
+        BEGIN
+            RAISERROR('Employee with ID %d already exists.', 16, 1, @EmpId)
+            RETURN;
+        END
 
-    INSERT INTO Employee (Emp_id, firstName, lastName, Salary, Role, streetName, buildingNumber, apartmentNumber)
-    VALUES (@EmpId, @FirstName, @LastName, @Salary, @Role, @StreetName, @BuildingNumber, @ApartmentNumber);
+        -- Insert the employee record
+        INSERT INTO Employee (Emp_id, firstName, lastName, Salary, Role, streetName, buildingNumber, apartmentNumber)
+        VALUES (@EmpId, @FirstName, @LastName, @Salary, @Role, @StreetName, @BuildingNumber, @ApartmentNumber);
 END;
-GO
 ------------------------------------------Test----------------------------------------------------------------
 EXEC CreateCustomerAccount
     @Email = 'Yehiasakr@gmail.com',
