@@ -28,7 +28,6 @@ BEGIN
 END;
 GO
 ---------------------------------------Employee Procedures--------------------------------------------------
-
 CREATE PROCEDURE CreateEmployeeAccount
     @EmpId INT,
     @FirstName VARCHAR(50),
@@ -40,11 +39,36 @@ CREATE PROCEDURE CreateEmployeeAccount
     @ApartmentNumber INT
 AS
 BEGIN
+    BEGIN TRY
+        -- Check if the employee already exists
+        IF EXISTS (SELECT 1 FROM Employee WHERE Emp_id = @EmpId)
+        BEGIN
+            RAISERROR('Employee with ID %d already exists.', 16, 1, @EmpId)
+            RETURN;
+        END
 
-    INSERT INTO Employee (Emp_id, firstName, lastName, Salary, Role, streetName, buildingNumber, apartmentNumber)
-    VALUES (@EmpId, @FirstName, @LastName, @Salary, @Role, @StreetName, @BuildingNumber, @ApartmentNumber);
+        -- Insert the employee record
+        INSERT INTO Employee (Emp_id, firstName, lastName, Salary, Role, streetName, buildingNumber, apartmentNumber)
+        VALUES (@EmpId, @FirstName, @LastName, @Salary, @Role, @StreetName, @BuildingNumber, @ApartmentNumber);
+    END TRY
+    BEGIN CATCH
+        -- Handle the error
+        DECLARE @ErrorMessage NVARCHAR(4000) = ERROR_MESSAGE();
+        DECLARE @ErrorSeverity INT = ERROR_SEVERITY();
+        DECLARE @ErrorState INT = ERROR_STATE();
+
+        -- Rollback any open transactions
+        IF @@TRANCOUNT > 0
+            ROLLBACK;
+
+        -- Log the error
+        INSERT INTO ErrorLog (ErrorMessage, ErrorSeverity, ErrorState)
+        VALUES (@ErrorMessage, @ErrorSeverity, @ErrorState);
+
+        -- Raise the error
+        RAISERROR(@ErrorMessage, @ErrorSeverity, @ErrorState);
+    END CATCH;
 END;
-GO
 ------------------------------------------Test----------------------------------------------------------------
 EXEC CreateCustomerAccount
     @Email = 'Yehiasakr@gmail.com',
@@ -76,7 +100,7 @@ BEGIN
     INSERT INTO Cast (MovieName, Actors)
     SELECT @Name, value
     FROM STRING_SPLIT(@Cast, ',');
-END
+END;
 
 CREATE PROCEDURE ListMovies
 AS
