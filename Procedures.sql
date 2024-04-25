@@ -95,31 +95,48 @@ BEGIN
   INSERT INTO ShowTime (Time, Date, Movie_Name, Hall_Number)
   VALUES (@Time, @Date, @MovieName, @HallNumber);
 END;
+go
 ------------------------------------------Reserve+Transaction Procedures----------------------------------------------------------------
 CREATE PROCEDURE ReserveTicket
-  @TransactionDate DATE,
   @PaymentType VARCHAR(50),
   @CustomerEmail VARCHAR(100),
-  @SeatRow INT,
-  @SeatColumn INT,
   @ShowTime TIME,
   @ShowDate DATE,
   @HallId INT,
-  @SeatHall INT,
   @MovieName VARCHAR(100),
   @ReservePrice FLOAT,
-  @ReserveType VARCHAR(50)
+  @ReserveType VARCHAR(50),
+  @Reserve_No INT OUTPUT -- Output parameter to return Reserve_No
 AS
 BEGIN
   DECLARE @TransactionId INT;
 
   -- Insert into Transaction table
   INSERT INTO [Transaction] (Price, Transaction_Date, PaymentType, Customer_Email)
-  VALUES (@ReservePrice, @TransactionDate, @PaymentType, @CustomerEmail);
+  VALUES (@ReservePrice, GETDATE(), @PaymentType, @CustomerEmail);
 
   SET @TransactionId = SCOPE_IDENTITY(); -- Retrieve the automatically generated TransactionID
 
   -- Insert into Reserve table
-  INSERT INTO Reserve (Transaction_Id, Seat_Row, Seat_Column, Show_Time, Show_Date, Hall_Id, Seat_Hall, MovieName, Customer_Email, price, type)
-  VALUES (@TransactionId, @SeatRow, @SeatColumn, @ShowTime, @ShowDate, @HallId, @SeatHall, @MovieName, @CustomerEmail, @ReservePrice, @ReserveType);
+  INSERT INTO Reserve (Transaction_Id, Show_Time, Show_Date, Hall_Id, MovieName, Customer_Email, price, type)
+  VALUES (@TransactionId, @ShowTime, @ShowDate, @HallId, @MovieName, @CustomerEmail, @ReservePrice, @ReserveType);
+
+  SET @Reserve_No = SCOPE_IDENTITY(); -- Assign Reserve_No to output parameter
 END;
+
+
+create procedure ReserveSeat
+	@ReserveID INT,
+	@Seat_No INT,
+	@Seat_Hall INT
+
+AS
+BEGIN
+	INSERT INTO ReservedSeats(Reserve_ID,Seat_No,Seat_Hall)
+	VALUES (@ReserveID,@Seat_No,@Seat_Hall)
+
+	Update Seat 
+		Set Booked = 1
+	where Seat.Seat_ID = @Seat_No and Seat.Hall_no = @Seat_Hall
+END;
+go

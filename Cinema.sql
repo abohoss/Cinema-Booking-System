@@ -44,13 +44,12 @@ CREATE TABLE Hall (
 );
 
 CREATE TABLE Seat (
-    Row INT,
-    SeatNo INT,
+    Seat_ID Int,
     SeatType VARCHAR(50),
     Hall_no INT,
     Booked BIT,
     
-    PRIMARY KEY (Row, SeatNo, Hall_no),
+    PRIMARY KEY (Seat_ID, Hall_no),
     CONSTRAINT fk_hallid FOREIGN KEY (Hall_no) REFERENCES Hall(Hall_Num)
 );
 
@@ -93,23 +92,29 @@ CREATE TABLE Manage_Halls (
 );
 
 CREATE TABLE Reserve (
+		Reserve_No Int Identity(1,1) ,
         Transaction_Id INT,
-        Seat_Row INT,
-        Seat_Column INT,
         Show_Time Time,
         Show_Date DATE,
         Hall_Id INT,
-        Seat_Hall INT,
         MovieName VARCHAR(100),
         Customer_Email VARCHAR(100),
         price FLOAT,
         type VARCHAR(50),
-        constraint pk_reserve primary key (Transaction_Id,Seat_Row,Seat_Column,Show_Time,Show_Date,Hall_Id,Seat_Hall,MovieName,Customer_Email),
+        constraint pk_reserve primary key (Reserve_No),
         constraint fk_transactionid foreign key (Transaction_Id) references [Transaction](TransactionID),
-        constraint fk_seat foreign key (Seat_Row,Seat_Column,Seat_Hall) references Seat(Row,SeatNo,Hall_no),
         constraint fk_showtime foreign key (Show_Time,Show_Date,MovieName,Hall_Id) references ShowTime(Time,Date,Movie_Name,Hall_Number),
         constraint fk_email foreign key (Customer_Email) references Customer(Email),
 
+);
+
+CREATE TABLE ReservedSeats(
+		Reserve_ID Int,
+		Seat_No Int,
+		Seat_Hall Int,
+		primary key (Reserve_ID,Seat_No,Seat_Hall),
+		constraint fk_ReserveID foreign key (Reserve_ID) references Reserve(Reserve_No),
+		constraint fk_seat foreign key (Seat_No,Seat_Hall) references Seat(Seat_ID,Hall_no),
 );
 
 Insert Into Hall  (Hall_Num,Screen_Type)
@@ -117,29 +122,29 @@ values (1,'Standard'),(2,'Standard'),(3,'IMAX'),(4,'IMAX')
 
 
 -- Inserting data into the Seat table
-INSERT INTO Seat (Row, SeatNo, SeatType, Hall_no, Booked)
+INSERT INTO Seat (Seat_ID, SeatType, Hall_no, Booked)
 VALUES
   -- First Hall
-  (1, 1, 'Regular', 1, 0),(1, 2, 'Regular', 1, 0),(1, 3, 'Regular', 1, 0),(1, 4, 'Regular', 1, 0),(1, 5, 'Regular', 1, 0),
-  (2, 1, 'Regular', 1, 0),(2, 2, 'Regular', 1, 0),(2, 3, 'Regular', 1, 0),(2, 4, 'Regular', 1, 0),(2, 5, 'Regular', 1, 0),
-  (3, 1, 'Premium', 1, 0),(3, 2, 'Premium', 1, 0),(3, 3, 'Premium', 1, 0),(3, 4, 'Premium', 1, 0),(3, 5, 'Premium', 1, 0),
-  (4, 1, 'Premium', 1, 0),(4, 2, 'Premium', 1, 0),(4, 3, 'Premium', 1, 0),(4, 4, 'Premium', 1, 0),(4, 5, 'Premium', 1, 0),
+  (1,'Regular', 1, 0),(2,'Regular', 1, 0),(3,'Regular', 1, 0),(4,'Regular', 1, 0),(5,'Regular', 1, 0),
+  (6,'Regular', 1, 0),(7,'Regular', 1, 0),(8,'Regular', 1, 0),(09,'Regular', 1, 0),(10,'Regular', 1, 0),
+  (11,'Premium', 1, 0),(12,'Premium', 1, 0),(13,'Premium', 1, 0),(14,'Premium', 1, 0),(15,'Premium', 1, 0),
+  (16,'Premium', 1, 0),(17,'Premium', 1, 0),(18,'Premium', 1, 0),(19,'Premium', 1, 0),(20,'Premium', 1, 0),
   
   -- Second Hall
-  (1, 1, 'Regular', 2, 0),(1, 2, 'Regular', 2, 0),(1, 3, 'Regular', 2, 0),(1, 4, 'Regular', 2, 0),(1, 5, 'Regular', 2, 0),
-  (2, 1, 'Regular', 2, 0),(2, 2, 'Regular', 2, 0),(2, 3, 'Regular', 2, 0),(2, 4, 'Regular', 2, 0),(2, 5, 'Regular', 2, 0),
-  (3, 1, 'Premium', 2, 0),(3, 2, 'Premium', 2, 0),(3, 3, 'Premium', 2, 0),(3, 4, 'Premium', 2, 0),(3, 5, 'Premium', 2, 0),
-  (4, 1, 'Premium', 2, 0),(4, 2, 'Premium', 2, 0),(4, 3, 'Premium', 2, 0),(4, 4, 'Premium', 2, 0),(4, 5, 'Premium', 2, 0),
+  (1,'Regular', 2, 0),(2,'Regular', 2, 0),(3,'Regular', 2, 0),(4,'Regular', 2, 0),(5,'Regular', 2, 0),
+  (6,'Regular', 2, 0),(7,'Regular', 2, 0),(8,'Regular', 2, 0),(09,'Regular', 2, 0),(10,'Regular', 2, 0),
+  (11,'Premium', 2, 0),(12,'Premium', 2, 0),(13,'Premium', 2, 0),(14,'Premium', 2, 0),(15,'Premium', 2, 0),
+  (16,'Premium', 2, 0),(17,'Premium', 2, 0),(18,'Premium', 2, 0),(19,'Premium', 2, 0),(20,'Premium', 2, 0),
   -- Third Hall
-  (1, 1, 'Regular', 3, 0),(1, 2, 'Regular', 3, 0),(1, 3, 'Regular', 3, 0),(1, 4, 'Regular', 3, 0),(1, 5, 'Regular', 3, 0),
-  (2, 1, 'Regular', 3, 0),(2, 2, 'Regular', 3, 0),(2, 3, 'Regular', 3, 0),(2, 4, 'Regular', 3, 0),(2, 5, 'Regular', 3, 0),
-  (3, 1, 'Premium', 3, 0),(3, 2, 'Premium', 3, 0),(3, 3, 'Premium', 3, 0),(3, 4, 'Premium', 3, 0),(3, 5, 'Premium', 3, 0),
-  (4, 1, 'Premium', 3, 0),(4, 2, 'Premium', 3, 0),(4, 3, 'Premium', 3, 0),(4, 4, 'Premium', 3, 0),(4, 5, 'Premium', 3, 0),
+  (1,'Regular', 3, 0),(2,'Regular', 3, 0),(3,'Regular', 3, 0),(4,'Regular', 3, 0),(5,'Regular', 3, 0),
+  (6,'Regular', 3, 0),(7,'Regular', 3, 0),(8,'Regular', 3, 0),(09,'Regular', 3, 0),(10,'Regular', 3, 0),
+  (11,'Premium', 3, 0),(12,'Premium', 3, 0),(13,'Premium', 3, 0),(14,'Premium', 3, 0),(15,'Premium', 3, 0),
+  (16,'Premium', 3, 0),(17,'Premium', 3, 0),(18,'Premium', 3, 0),(19,'Premium', 3, 0),(20,'Premium', 3, 0),
   -- Fourth Hall
-  (1, 1, 'Regular', 4, 0),(1, 2, 'Regular', 4, 0),(1, 3, 'Regular', 4, 0),(1, 4, 'Regular', 4, 0),(1, 5, 'Regular', 4, 0),
-  (2, 1, 'Regular', 4, 0),(2, 2, 'Regular', 4, 0),(2, 3, 'Regular', 4, 0),(2, 4, 'Regular', 4, 0),(2, 5, 'Regular', 4, 0),
-  (3, 1, 'Premium', 4, 0),(3, 2, 'Premium', 4, 0),(3, 3, 'Premium', 4, 0),(3, 4, 'Premium', 4, 0),(3, 5, 'Premium', 4, 0),
-  (4, 1, 'Premium', 4, 0),(4, 2, 'Premium', 4, 0),(4, 3, 'Premium', 4, 0),(4, 4, 'Premium', 4, 0),(4, 5, 'Premium', 4, 0)
+  (1,'Regular', 4, 0),(2,'Regular', 4, 0),(3,'Regular', 4, 0),(4,'Regular', 4, 0),(5,'Regular', 4, 0),
+  (6,'Regular', 4, 0),(7,'Regular', 4, 0),(8,'Regular', 4, 0),(09,'Regular', 4, 0),(10,'Regular', 4, 0),
+  (11,'Premium', 4, 0),(12,'Premium', 4, 0),(13,'Premium', 4, 0),(14,'Premium', 4, 0),(15,'Premium', 4, 0),
+  (16,'Premium', 4, 0),(17,'Premium', 4, 0),(18,'Premium', 4, 0),(19,'Premium', 4, 0),(20,'Premium', 4, 0)
     
 
 
