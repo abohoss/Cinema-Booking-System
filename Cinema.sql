@@ -92,7 +92,6 @@ CREATE TABLE Manage_Halls (
 );
 
 CREATE TABLE Reserve (
-		Reserve_No Int Identity(1,1) ,
         Transaction_Id INT,
         Show_Time Time,
         Show_Date DATE,
@@ -101,7 +100,7 @@ CREATE TABLE Reserve (
         Customer_Email VARCHAR(100),
         price FLOAT,
         type VARCHAR(50),
-        constraint pk_reserve primary key (Reserve_No),
+        constraint pk_reserve primary key (Transaction_Id,Show_Time,Show_Date,Hall_Id,MovieName,Customer_Email),
         constraint fk_transactionid foreign key (Transaction_Id) references [Transaction](TransactionID),
         constraint fk_showtime foreign key (Show_Time,Show_Date,MovieName,Hall_Id) references ShowTime(Time,Date,Movie_Name,Hall_Number),
         constraint fk_email foreign key (Customer_Email) references Customer(Email),
@@ -109,11 +108,16 @@ CREATE TABLE Reserve (
 );
 
 CREATE TABLE ReservedSeats(
-		Reserve_ID Int,
+		TransactionId INT,
+        ShowTime Time,
+        ShowDate DATE,
+        Hall_No INT,
+        Movie_Name VARCHAR(100),
+        CustomerEmail VARCHAR(100),
 		Seat_No Int,
 		Seat_Hall Int,
-		primary key (Reserve_ID,Seat_No,Seat_Hall),
-		constraint fk_ReserveID foreign key (Reserve_ID) references Reserve(Reserve_No),
+		primary key (TransactionId,ShowTime,ShowDate,Hall_No,Movie_Name,CustomerEmail,Seat_No,Seat_Hall),
+		constraint fk_Reserve foreign key(TransactionId,ShowTime,ShowDate,Hall_No,Movie_Name,CustomerEmail) references Reserve(Transaction_Id,Show_Time,Show_Date,Hall_Id,MovieName,Customer_Email),
 		constraint fk_seat foreign key (Seat_No,Seat_Hall) references Seat(Seat_ID,Hall_no),
 );
 

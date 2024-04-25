@@ -99,68 +99,93 @@ BEGIN
   VALUES (@Time, @Date, @MovieName, @HallNumber);
 END;
 go
-------------------------------------------Reserve+Transaction Procedures----------------------------------------------------------------
+------------------------------------------Reserve+Transaction Procedure----------------------------------------------------------------
 CREATE PROCEDURE ReserveTicket
-  @PaymentType VARCHAR(50),
-  @CustomerEmail VARCHAR(100),
-  @ShowTime TIME,
-  @ShowDate DATE,
-  @HallId INT,
-  @MovieName VARCHAR(100),
-  @ReservePrice FLOAT,
-  @ReserveType VARCHAR(50),
-  @Reserve_No INT OUTPUT -- Output parameter to return Reserve_No
+    @Show_Time TIME,
+    @Show_Date DATE,
+    @Hall_Id INT,
+    @MovieName VARCHAR(100),
+    @Customer_Email VARCHAR(100),
+    @PaymentType VARCHAR(50),
+    @Reserveprice FLOAT,
+    @Reservetype VARCHAR(50),
+    @Seats VARCHAR(100)
 AS
 BEGIN
-  DECLARE @TransactionId INT;
+    DECLARE @TransactionId INT;
 
-  -- Insert into Transaction table
-  INSERT INTO [Transaction] (Price, Transaction_Date, PaymentType, Customer_Email)
-  VALUES (@ReservePrice, GETDATE(), @PaymentType, @CustomerEmail);
+    -- Check if seat is already booked
+    IF EXISTS (
+        SELECT 1
+        FROM Seat
+        WHERE Seat_ID IN (
+                SELECT CAST(Value AS INT)
+                FROM STRING_SPLIT(@Seats, ',')
+            )
+            AND Hall_no = @Hall_Id
+            AND Booked = 1
+    )
+    BEGIN
+        -- Seat is already booked, return an error or take appropriate action
+        RAISERROR('Selected seats are already booked. Reservation cannot be made.', 16, 1);
+        RETURN;
+    END;
 
-  SET @TransactionId = SCOPE_IDENTITY(); -- Retrieve the automatically generated TransactionID
+    -- Insert into Transaction table
+    INSERT INTO [Transaction] (Price, Transaction_Date, PaymentType, Customer_Email)
+    VALUES (@ReservePrice, GETDATE(), @PaymentType, @Customer_Email);
 
-  -- Insert into Reserve table
-  INSERT INTO Reserve (Transaction_Id, Show_Time, Show_Date, Hall_Id, MovieName, Customer_Email, price, type)
-  VALUES (@TransactionId, @ShowTime, @ShowDate, @HallId, @MovieName, @CustomerEmail, @ReservePrice, @ReserveType);
+    SET @TransactionId = SCOPE_IDENTITY(); -- Retrieve the automatically generated TransactionID
 
-  SET @Reserve_No = SCOPE_IDENTITY(); -- Assign Reserve_No to output parameter
+    -- Insert into Reserve table
+    INSERT INTO Reserve (Transaction_Id, Show_Time, Show_Date, Hall_Id, MovieName, Customer_Email, price, type)
+    VALUES (@TransactionId, @Show_Time, @Show_Date, @Hall_Id, @MovieName, @Customer_Email, @ReservePrice, @ReserveType);
+
+    -- Split the comma-separated seat numbers into individual seats
+    DECLARE @SeatList TABLE (Seat_No INT);
+    DECLARE @SeatValue VARCHAR(10), @Pos INT, @Delimiter CHAR(1);
+
+    SET @Delimiter = ',';
+    SET @Seats = @Seats + @Delimiter;
+    SET @Pos = CHARINDEX(@Delimiter, @Seats);
+
+    WHILE @Pos > 0
+    BEGIN
+        SET @SeatValue = SUBSTRING(@Seats, 1, @Pos - 1);
+
+        -- Convert seat value to INT and insert into the table variable
+        INSERT INTO @SeatList (Seat_No)
+        VALUES (CAST(@SeatValue AS INT));
+
+        SET @Seats = SUBSTRING(@Seats, @Pos + 1, LEN(@Seats));
+        SET @Pos = CHARINDEX(@Delimiter, @Seats);
+    END;
+
+    -- Insert reserved seats into the ReservedSeats table
+    INSERT INTO ReservedSeats (TransactionId, ShowTime, ShowDate, Hall_No, Movie_Name, CustomerEmail, Seat_No, Seat_Hall)
+    SELECT @TransactionId, @Show_Time, @Show_Date, @Hall_Id, @MovieName, @Customer_Email, Seat_No, @Hall_Id
+    FROM @SeatList;
+
+    -- Update the Seat table to mark the seats as booked
+    UPDATE Seat
+    SET Booked = 1
+    WHERE Seat_ID IN (
+            SELECT Seat_No
+            FROM @SeatList
+        )
+        AND Hall_no = @Hall_Id;
 END;
-go
 
-create procedure ReserveSeat
-	@ReserveID INT,
-	@Seat_No INT,
-	@Seat_Hall INT
-
-AS
-BEGIN
-	INSERT INTO ReservedSeats(Reserve_ID,Seat_No,Seat_Hall)
-	VALUES (@ReserveID,@Seat_No,@Seat_Hall)
-
-	Update Seat 
-		Set Booked = 1
-	where Seat.Seat_ID = @Seat_No and Seat.Hall_no = @Seat_Hall
-END;
-go
 -------------------------------------------------Reserve Test-----------------------------------------------
-DECLARE @Reserve_Id INT;
 
 EXEC dbo.ReserveTicket
-    @PaymentType = 'Credit Card',
-    @CustomerEmail= 'Yehiasakr@gmail.com',
-    @ShowTime= '20:00',
-    @ShowDate = '2024-05-01',
-    @HallId = 1,
-    @MovieName = 'The Avengers',
-    @ReservePrice = 50,
-    @ReserveType = 'Premium',
-    @Reserve_No = @Reserve_Id OUTPUT;
+		@Show_Time = '20:00' ,
+        @Show_Date = '2024-05-01' ,
+        @Hall_Id = 1 ,
+        @MovieName = 'The Avengers' ,
+        @Customer_Email = 'Yehiasakr@gmail.com' ,
+		@PaymentType = 'Credit Card' ,
+        @Reserveprice = 50 ,
+        @Reservetype = 'Premium',
+		@Seats = '1,2,3'
 
-SELECT @Reserve_Id AS ReserveId;
-
-
-Exec dbo.ReserveSeat
-	@ReserveID =@Reserve_Id,
-	@Seat_No = 1,
-	@Seat_Hall=1
