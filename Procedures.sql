@@ -11,11 +11,19 @@ CREATE PROCEDURE CreateCustomerAccount
     @Password VARCHAR(100)
 AS
 BEGIN
+    -- Check if the customer already exists
+    IF EXISTS (SELECT 1 FROM Customer WHERE Email = @Email)
+    BEGIN
+        -- Customer with the same email already exists, raise an error
+        RAISERROR('Customer with the same email already exists', 16, 1);
+        RETURN;
+    END;
 
+    -- Insert the customer into the Customer table
     INSERT INTO Customer (Email, firstName, lastName, Age, Gender, phoneNumber, Password)
     VALUES (@Email, @FirstName, @LastName, @Age, @Gender, @PhoneNumber, @Password);
 END;
-GO
+
 CREATE PROCEDURE CustomerLogin
     @Email VARCHAR(100),
     @Password VARCHAR(100)
@@ -68,6 +76,14 @@ CREATE PROCEDURE AddMovie
     @Cast NVARCHAR(MAX)
 AS
 BEGIN
+    -- Check if the movie already exists
+    IF EXISTS (SELECT 1 FROM Movie WHERE Name = @Name)
+    BEGIN
+        -- Movie already exists, raise an error
+        RAISERROR('Movie already exists', 16, 1);
+        RETURN;
+    END;
+
     -- Insert the movie into the Movie table
     INSERT INTO Movie (Name, Description, Genre, Employee_Id)
     VALUES (@Name, @Description, @Genre, @EmployeeId);
@@ -76,7 +92,8 @@ BEGIN
     INSERT INTO Cast (MovieName, Actors)
     SELECT @Name, value
     FROM STRING_SPLIT(@Cast, ',');
-END
+
+END;
 
 CREATE PROCEDURE ListMovies
 AS
@@ -95,10 +112,25 @@ CREATE PROCEDURE AddShowTime
   @HallNumber INT
 AS
 BEGIN
+  -- Check if the ShowTime already exists
+  IF EXISTS (
+    SELECT 1
+    FROM ShowTime
+    WHERE Time = @Time
+      AND Date = @Date
+      AND Movie_Name = @MovieName
+      AND Hall_Number = @HallNumber
+  )
+  BEGIN
+    -- ShowTime already exists, raise an error
+    RAISERROR('ShowTime already exists', 16, 1);
+    RETURN;
+  END;
+
+  -- Insert the ShowTime into the ShowTime table
   INSERT INTO ShowTime (Time, Date, Movie_Name, Hall_Number)
   VALUES (@Time, @Date, @MovieName, @HallNumber);
 END;
-go
 ------------------------------------------Reserve+Transaction Procedure----------------------------------------------------------------
 CREATE PROCEDURE ReserveTicket
     @Show_Time TIME,
