@@ -20,7 +20,8 @@ CREATE TABLE Employee (
       Role VARCHAR(50),
       streetName VARCHAR(100),
       buildingNumber INT,
-      apartmentNumber INT
+      apartmentNumber INT,
+      Password VARCHAR(100)
  );
 
  CREATE TABLE Movie (

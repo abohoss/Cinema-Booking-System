@@ -30,8 +30,8 @@ def list_movies():
 conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
 cursor = conn.cursor()
 
-# movie = Movie(Name='The Avengers', Description='Superhero movie', Genre='Action', EmpId=1, Cast='Robert Downey Jr., Chris Evans, Scarlett Johansson')
-# add_movie(movie)
+movie = Movie(Name='The Avengers', Description='Superhero movie', Genre='Action', EmpId=1, Cast='Robert Downey Jr., Chris Evans, Scarlett Johansson')
+add_movie(movie)
 
 list_movies()
 

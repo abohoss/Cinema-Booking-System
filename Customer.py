@@ -52,7 +52,7 @@ cursor = conn.cursor()
 customer = Customer(firstName='Mark', lastName='Salah', Age=19, Gender='Male',
                     phoneNumber='01110101010', Email='Mark.Saleh@gmail.com', password='145')
 
-# create_customer_account(customer)
+create_customer_account(customer)
 
 login_result = customer_login('Mark.Saleh@gmail.com', '145')
 print("Login Successful!" if login_result else "Login Failed!")
