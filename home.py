@@ -12,7 +12,7 @@ class CinemaHomePage(tk.Tk):
         self.center_window()
 
         # Connect to the SQL database
-        self.conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
+        self.conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-T4EV4IC};Database={Cinema}')
         self.cursor = self.conn.cursor()
 
         # Create and place widgets

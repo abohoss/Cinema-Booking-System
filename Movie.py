@@ -27,7 +27,7 @@ def list_movies(cursor):
 
 #---------------------------------------------------------------------------------------------------------------------------#
 # # Connect to the SQL Server database
-# conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
+# conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-T4EV4IC};Database={Cinema}')
 # cursor = conn.cursor()
 
 # movie = Movie(Name='The Avengers', Description='Superhero movie', Genre='Action', EmpId=1, Cast='Robert Downey Jr., Chris Evans, Scarlett Johansson')

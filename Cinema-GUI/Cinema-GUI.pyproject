@@ -1,0 +1,27 @@
+{
+    "files": [
+        "mainwindow.py",
+        "form.ui",
+        "ui_form.py",
+        "userLogin.ui",
+        "ui_userLogin.py",
+        "empLogin.ui",
+        "ui_empLogin.py",
+        "Customer.py",
+        "Employee.py",
+        "Movie.py",
+        "Showtime.py",
+        "userHome.ui",
+        "empHome.ui",
+        "createAcc.ui",
+        "ui_createAcc.py",
+        "ui_empHome.py",
+        "ui_userHome.py",
+        "AddMovie.ui",
+        "ui_AddMovie.py",
+        "RemoveMovie.ui",
+        "ui_RemoveMovie.py",
+        "AddShowTime.ui",
+        "ui_AddShowTime.py"
+    ]
+}

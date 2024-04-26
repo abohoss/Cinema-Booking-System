@@ -123,7 +123,27 @@ BEGIN
     FROM Movie M
     JOIN Cast C ON M.Name = C.MovieName
     GROUP BY M.Name, M.Description, M.Genre;
+END;
+go
+
+CREATE PROCEDURE DeleteMovie
+    @name VARCHAR(100)
+AS
+BEGIN
+    DECLARE movieCount INT;
+
+    -- Check if the movie exists
+    SELECT COUNT(*) INTO movieCount FROM Movie WHERE Name = @name;
+
+    IF movieCount > 0 THEN
+        -- Delete the movie
+        DELETE FROM Movie WHERE Name = @name;
+        SELECT CONCAT('Movie ', @name, ' deleted successfully.') AS Message;
+    ELSE
+        SELECT 'Movie not found.' AS Message;
+    END IF;
 END
+
 ------------------------------------------Showtime Procedures----------------------------------------------------------------
 CREATE PROCEDURE AddShowTime
   @Time TIME,
