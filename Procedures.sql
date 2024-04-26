@@ -84,7 +84,7 @@ EXEC CreateCustomerAccount
     @Password = '1234';
 go
 Exec CustomerLogin
-	@Email = 'Yehiasakr@gmail.com',
+	@Email = 'yehiasakr@gmail.com',
 	@Password = '1234';
 go
 ------------------------------------------Movie Procedures----------------------------------------------------------------
