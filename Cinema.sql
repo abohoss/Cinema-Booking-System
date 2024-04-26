@@ -1,4 +1,6 @@
 create database Cinema;
+GO
+
 use Cinema
 go
 
