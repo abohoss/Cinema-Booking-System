@@ -3,14 +3,14 @@ import pyodbc
 from datetime import datetime
 from PySide6.QtCore import QDate, QTime
 from PySide6.QtWidgets import QApplication, QMainWindow
-from ui_form import Ui_MainWindow
-from ui_empLogin import EmpLogin
-from ui_userLogin import UserLogin
-from ui_createAcc import CreateAccount
-from ui_empHome import EmpHome
-from ui_AddMovie import MovieAdd
-from ui_RemoveMovie import RemoveMovie
-from ui_AddShowTime import ShowAdd
+from UI_.ui_form import Ui_MainWindow
+from UI_.ui_empLogin import EmpLogin
+from UI_.ui_userLogin import UserLogin
+from UI_.ui_createAcc import CreateAccount
+from UI_.ui_empHome import EmpHome
+from UI_.ui_AddMovie import MovieAdd
+from UI_.ui_RemoveMovie import RemoveMovie
+from UI_.ui_AddShowTime import ShowAdd
 from Employee import employee_login
 from Customer import customer_login , create_customer_account, Customer, validate_email
 from Movie import Movie,add_movie, list_movieNames, list_Halls

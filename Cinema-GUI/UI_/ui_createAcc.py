@@ -76,6 +76,7 @@ class CreateAccount(object):
         self.phoneField = QLineEdit(self.centralwidget)
         self.phoneField.setObjectName(u"phoneField")
         self.phoneField.setGeometry(QRect(260, 400, 241, 28))
+        self.phoneField.setMaxLength(11)
         self.ageField = QLineEdit(self.centralwidget)
         self.ageField.setObjectName(u"ageField")
         self.ageField.setGeometry(QRect(240, 300, 241, 28))

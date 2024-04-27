@@ -202,6 +202,9 @@
       <height>28</height>
      </rect>
     </property>
+    <property name="maxLength">
+     <number>11</number>
+    </property>
    </widget>
    <widget class="QLineEdit" name="ageField">
     <property name="geometry">
