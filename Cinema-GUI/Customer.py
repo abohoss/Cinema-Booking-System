@@ -1,5 +1,5 @@
 import pyodbc
-
+import re
 class Customer:
     def __init__(self, firstName, lastName, Age, Gender, phoneNumber, Email, password):
         self.firstName = firstName
@@ -11,6 +11,16 @@ class Customer:
         self.password = password
 
 PriceDict = {'Regular': 30, 'Premium': 50,'Standard':70, 'IMAX': 100}
+
+def validate_email(email):
+    # Regular expression pattern for email validation
+    email_regex = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+
+    # Check if the email matches the pattern
+    if re.match(email_regex, email):
+        return True
+    else:
+        return False
 #-------------------------------------------------------------------------------------------------
 def create_customer_account(customer,cursor):
     cursor.execute("EXEC CreateCustomerAccount ?, ?, ?, ?, ?, ?, ?",

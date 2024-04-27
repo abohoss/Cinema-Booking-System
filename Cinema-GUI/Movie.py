@@ -22,18 +22,33 @@ def list_movies(cursor):
             print("Genre:", row.Genre)
             print("Cast Members:", row.Actors)
             print("-" * 50)
+
+def list_movieNames(cursor):
+        cursor.execute("Exec ListMovieNames")
+        rows = cursor.fetchall()
+        movie_names = []
+        for row in rows:
+                movie_names.append(row.Name)
+        return movie_names
     
+def list_Halls(cursor):
+        cursor.execute("Exec ListHalls")
+        rows = cursor.fetchall()
+        hall_nums = []
+        for row in rows:
+                hall_nums.append(row)
+        return hall_nums
 
+# # ---------------------------------------------------------------------------------------------------------------------------#
+# Connect to the SQL Server database
+conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
+cursor = conn.cursor()
 
-#---------------------------------------------------------------------------------------------------------------------------#
-# # Connect to the SQL Server database
-# conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
-# cursor = conn.cursor()
-
-# movie = Movie(Name='The Avengers', Description='Superhero movie', Genre='Action', EmpId=1, Cast='Robert Downey Jr., Chris Evans, Scarlett Johansson')
-# add_movie(movie)
+# movie = Movie(Name='Thor', Description='Superhero movie', Genre='Action', EmpId=1, Cast='Chris Hemsworth, Tom Hiddleston, Natalie Portman, Anthony Hopkins')
+# add_movie(movie,cursor)
 
 # list_movies()
-
-# # Close the connection
-# conn.close()
+# list_movieNames(cursor)
+# list_Halls(cursor)
+# Close the connection
+conn.close()

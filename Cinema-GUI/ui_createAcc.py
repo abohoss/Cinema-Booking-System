@@ -75,7 +75,7 @@ class CreateAccount(object):
         self.emailField.setGeometry(QRect(240, 260, 241, 28))
         self.phoneField = QLineEdit(self.centralwidget)
         self.phoneField.setObjectName(u"phoneField")
-        self.phoneField.setGeometry(QRect(250, 400, 241, 28))
+        self.phoneField.setGeometry(QRect(260, 400, 241, 28))
         self.ageField = QLineEdit(self.centralwidget)
         self.ageField.setObjectName(u"ageField")
         self.ageField.setGeometry(QRect(240, 300, 241, 28))
@@ -100,6 +100,13 @@ class CreateAccount(object):
         self.backBtn.setObjectName(u"backBtn")
         self.backBtn.setGeometry(QRect(420, 520, 151, 41))
         self.backBtn.setFont(font2)
+        self.oLabel = QLabel(self.centralwidget)
+        self.oLabel.setObjectName(u"oLabel")
+        self.oLabel.setGeometry(QRect(10, 520, 401, 41))
+        font3 = QFont()
+        font3.setPointSize(14)
+        self.oLabel.setFont(font3)
+        self.oLabel.setAlignment(Qt.AlignCenter)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -121,5 +128,6 @@ class CreateAccount(object):
         self.fRadio.setText(QCoreApplication.translate("MainWindow", u"Female", None))
         self.createAccBtn.setText(QCoreApplication.translate("MainWindow", u"Create Account", None))
         self.backBtn.setText(QCoreApplication.translate("MainWindow", u"Back to Login", None))
+        self.oLabel.setText("")
     # retranslateUi
 

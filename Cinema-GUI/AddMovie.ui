@@ -17,24 +17,34 @@
    <widget class="QPushButton" name="Add">
     <property name="geometry">
      <rect>
-      <x>638</x>
-      <y>470</y>
-      <width>121</width>
+      <x>600</x>
+      <y>480</y>
+      <width>161</width>
       <height>41</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
     <property name="text">
-     <string>confirm</string>
+     <string>Add Movie</string>
     </property>
    </widget>
    <widget class="QPushButton" name="Back">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>470</y>
-      <width>121</width>
+      <x>400</x>
+      <y>480</y>
+      <width>161</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Back To Home</string>
@@ -43,8 +53,8 @@
    <widget class="QLineEdit" name="cast">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>390</y>
+      <x>150</x>
+      <y>400</y>
       <width>411</width>
       <height>28</height>
      </rect>
@@ -53,15 +63,15 @@
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>270</y>
+      <x>80</x>
+      <y>260</y>
       <width>121</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>12</pointsize>
+      <pointsize>14</pointsize>
      </font>
     </property>
     <property name="text">
@@ -73,13 +83,13 @@
      <rect>
       <x>72</x>
       <y>120</y>
-      <width>101</width>
-      <height>20</height>
+      <width>91</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>12</pointsize>
+      <pointsize>14</pointsize>
      </font>
     </property>
     <property name="text">
@@ -89,15 +99,15 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>72</x>
+      <x>80</x>
       <y>190</y>
-      <width>63</width>
-      <height>20</height>
+      <width>81</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>12</pointsize>
+      <pointsize>14</pointsize>
      </font>
     </property>
     <property name="text">
@@ -111,16 +121,6 @@
       <y>190</y>
       <width>191</width>
       <height>28</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="description">
-    <property name="geometry">
-     <rect>
-      <x>180</x>
-      <y>270</y>
-      <width>411</width>
-      <height>31</height>
      </rect>
     </property>
    </widget>
@@ -143,19 +143,22 @@
     <property name="text">
      <string>Add Movie</string>
     </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
    </widget>
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>390</y>
+      <x>80</x>
+      <y>400</y>
       <width>63</width>
       <height>31</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>12</pointsize>
+      <pointsize>14</pointsize>
      </font>
     </property>
     <property name="text">
@@ -175,8 +178,8 @@
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>470</y>
+      <x>10</x>
+      <y>480</y>
       <width>391</width>
       <height>41</height>
      </rect>
@@ -188,6 +191,38 @@
     </property>
     <property name="text">
      <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>360</y>
+      <width>531</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Note : Cast must be Comma Separated ( Ahmed, Yehia )</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="description">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>260</y>
+      <width>431</width>
+      <height>85</height>
+     </rect>
     </property>
    </widget>
   </widget>

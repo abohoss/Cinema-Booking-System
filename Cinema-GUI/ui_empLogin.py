@@ -61,6 +61,13 @@ class EmpLogin(object):
         self.label_3.setObjectName(u"label_3")
         self.label_3.setGeometry(QRect(50, 220, 121, 41))
         self.label_3.setFont(font2)
+        self.oLabel = QLabel(self.centralwidget)
+        self.oLabel.setObjectName(u"oLabel")
+        self.oLabel.setGeometry(QRect(190, 320, 401, 41))
+        font3 = QFont()
+        font3.setPointSize(14)
+        self.oLabel.setFont(font3)
+        self.oLabel.setAlignment(Qt.AlignCenter)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -75,5 +82,6 @@ class EmpLogin(object):
         self.loginBtn.setText(QCoreApplication.translate("MainWindow", u"Login", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Employee Id:", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Password:", None))
+        self.oLabel.setText("")
     # retranslateUi
 

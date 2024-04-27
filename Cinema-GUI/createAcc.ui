@@ -196,7 +196,7 @@
    <widget class="QLineEdit" name="phoneField">
     <property name="geometry">
      <rect>
-      <x>250</x>
+      <x>260</x>
       <y>400</y>
       <width>241</width>
       <height>28</height>
@@ -293,6 +293,27 @@
     </property>
     <property name="text">
      <string>Back to Login</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="oLabel">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>520</y>
+      <width>401</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>

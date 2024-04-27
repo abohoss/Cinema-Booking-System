@@ -65,6 +65,13 @@ class UserLogin(object):
         font2.setItalic(True)
         self.label.setFont(font2)
         self.label.setAlignment(Qt.AlignCenter)
+        self.oLabel = QLabel(self.centralwidget)
+        self.oLabel.setObjectName(u"oLabel")
+        self.oLabel.setGeometry(QRect(180, 340, 401, 41))
+        font3 = QFont()
+        font3.setPointSize(14)
+        self.oLabel.setFont(font3)
+        self.oLabel.setAlignment(Qt.AlignCenter)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -80,5 +87,6 @@ class UserLogin(object):
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Email:", None))
         self.accBtn.setText(QCoreApplication.translate("MainWindow", u"Create Account", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"User Login", None))
+        self.oLabel.setText("")
     # retranslateUi
 

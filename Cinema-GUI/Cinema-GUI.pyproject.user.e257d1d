@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 12.0.1, 2024-04-27T17:43:06. -->
+<!-- Written by QtCreator 13.0.0, 2024-04-26T17:48:47. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
-  <value type="QByteArray">{06cca695-726e-4524-9b0b-1341514b969a}</value>
+  <value type="QByteArray">{e257d1d0-1e41-4f9f-badd-e312d74f248b}</value>
  </data>
  <data>
   <variable>ProjectExplorer.Project.ActiveTarget</variable>
@@ -41,7 +41,7 @@
    <value type="bool" key="EditorConfiguration.PreferSingleLineComments">false</value>
    <value type="bool" key="EditorConfiguration.ScrollWheelZooming">true</value>
    <value type="bool" key="EditorConfiguration.ShowMargin">false</value>
-   <value type="int" key="EditorConfiguration.SmartBackspaceBehavior">0</value>
+   <value type="int" key="EditorConfiguration.SmartBackspaceBehavior">2</value>
    <value type="bool" key="EditorConfiguration.SmartSelectionChanging">true</value>
    <value type="bool" key="EditorConfiguration.SpacesForTabs">true</value>
    <value type="int" key="EditorConfiguration.TabKeyBehavior">0</value>
@@ -89,19 +89,20 @@
   <variable>ProjectExplorer.Project.Target.0</variable>
   <valuemap type="QVariantMap">
    <value type="QString" key="DeviceType">Desktop</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Desktop</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Desktop</value>
-   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{a9e44096-c9e7-4b22-adc5-85f21d417058}</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Python</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Python</value>
+   <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">{22efb61c-9758-4f89-857e-963622e27399}</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveBuildConfiguration">0</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveDeployConfiguration">0</value>
    <value type="qlonglong" key="ProjectExplorer.Target.ActiveRunConfiguration">0</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.BuildConfiguration.0">
-    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">E:\ASU\Semester 6\Database\Cinema-Booking-System\Cinema-GUI</value>
+    <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">C:\Users\Ahmed hosam\Desktop\prject db\Cinema-Booking-System\Cinema-GUI\.qtcreator\Pythonvenv</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
       <value type="bool" key="ProjectExplorer.BuildStep.Enabled">true</value>
       <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Python.PysideBuildStep</value>
-      <value type="QString" key="Python.PySideProjectTool">E:\ASU\Semester 6\Database\Cinema-Booking-System\Cinema-GUI\venv\Scripts\pyside6-project.exe</value>
+      <value type="QString" key="Python.PySideProjectTool">C:\Users\Ahmed hosam\Desktop\prject db\Cinema-Booking-System\Cinema-GUI\.qtcreator\Pythonvenv\Scripts\pyside6-project.exe</value>
+      <value type="QString" key="Python.PySideUic">C:\Users\Ahmed hosam\Desktop\prject db\Cinema-Booking-System\Cinema-GUI\.qtcreator\Pythonvenv\Scripts\pyside6-uic.exe</value>
      </valuemap>
      <value type="qlonglong" key="ProjectExplorer.BuildStepList.StepsCount">1</value>
      <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Build</value>
@@ -119,8 +120,10 @@
     <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.CustomParsers"/>
     <value type="bool" key="ProjectExplorer.BuildConfiguration.ParseStandardOutput">false</value>
     <valuelist type="QVariantList" key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges"/>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">build</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Python Virtual Environment</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Python.PySideBuildConfiguration</value>
+    <value type="QString" key="python">C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI/.qtcreator/Pythonvenv/Scripts/python.exe</value>
+    <value type="QString" key="venv">C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI/.qtcreator/Pythonvenv</value>
    </valuemap>
    <value type="qlonglong" key="ProjectExplorer.Target.BuildConfigurationCount">1</value>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.DeployConfiguration.0">
@@ -145,14 +148,15 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
+    <value type="QString" key="PerfRecordArgsId">-e cpu-cycles --call-graph &quot;dwarf,4096&quot; -F 250</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">mainwindow.py</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/mainwindow.py</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/mainwindow.py</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI/mainwindow.py</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI/mainwindow.py</value>
     <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Script">E:\ASU\Semester 6\Database\Cinema-Booking-System\Cinema-GUI\mainwindow.py</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Users\Ahmed hosam\Desktop\prject db\Cinema-Booking-System\Cinema-GUI\mainwindow.py</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.1">
     <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
@@ -163,14 +167,15 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
+    <value type="QString" key="PerfRecordArgsId">-e cpu-cycles --call-graph &quot;dwarf,4096&quot; -F 250</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">ui_form.py</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/ui_form.py</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/ui_form.py</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI/ui_form.py</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI/ui_form.py</value>
     <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Script">E:\ASU\Semester 6\Database\Cinema-Booking-System\Cinema-GUI\ui_form.py</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Users\Ahmed hosam\Desktop\prject db\Cinema-Booking-System\Cinema-GUI\ui_form.py</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.10">
     <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
@@ -181,68 +186,15 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
+    <value type="QString" key="PerfRecordArgsId">-e cpu-cycles --call-graph &quot;dwarf,4096&quot; -F 250</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">ui_userHome.py</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/ui_userHome.py</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/ui_userHome.py</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI/ui_userHome.py</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI/ui_userHome.py</value>
     <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Script">E:\ASU\Semester 6\Database\Cinema-Booking-System\Cinema-GUI\ui_userHome.py</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Users\Ahmed hosam\Desktop\prject db\Cinema-Booking-System\Cinema-GUI\ui_userHome.py</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI</value>
-   </valuemap>
-   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.11">
-    <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
-    <value type="bool" key="Analyzer.QmlProfiler.Settings.UseGlobalSettings">true</value>
-    <value type="int" key="Analyzer.Valgrind.Callgrind.CostFormat">0</value>
-    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
-    <valuelist type="QVariantList" key="CustomOutputParsers"/>
-    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
-    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">ui_AddMovie.py</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/ui_AddMovie.py</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/ui_AddMovie.py</value>
-    <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">true</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Script">E:\ASU\Semester 6\Database\Cinema-Booking-System\Cinema-GUI\ui_AddMovie.py</value>
-    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
-    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI</value>
-   </valuemap>
-   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.12">
-    <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
-    <value type="bool" key="Analyzer.QmlProfiler.Settings.UseGlobalSettings">true</value>
-    <value type="int" key="Analyzer.Valgrind.Callgrind.CostFormat">0</value>
-    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
-    <valuelist type="QVariantList" key="CustomOutputParsers"/>
-    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
-    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">ui_RemoveMovie.py</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/ui_RemoveMovie.py</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/ui_RemoveMovie.py</value>
-    <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">true</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Script">E:\ASU\Semester 6\Database\Cinema-Booking-System\Cinema-GUI\ui_RemoveMovie.py</value>
-    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
-    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI</value>
-   </valuemap>
-   <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.13">
-    <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
-    <value type="bool" key="Analyzer.QmlProfiler.Settings.UseGlobalSettings">true</value>
-    <value type="int" key="Analyzer.Valgrind.Callgrind.CostFormat">0</value>
-    <value type="bool" key="Analyzer.Valgrind.Settings.UseGlobalSettings">true</value>
-    <valuelist type="QVariantList" key="CustomOutputParsers"/>
-    <value type="int" key="PE.EnvironmentAspect.Base">2</value>
-    <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
-    <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">ui_AddShowTime.py</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/ui_AddShowTime.py</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/ui_AddShowTime.py</value>
-    <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">true</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Script">E:\ASU\Semester 6\Database\Cinema-Booking-System\Cinema-GUI\ui_AddShowTime.py</value>
-    <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
-    <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.2">
     <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
@@ -253,14 +205,15 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
+    <value type="QString" key="PerfRecordArgsId">-e cpu-cycles --call-graph &quot;dwarf,4096&quot; -F 250</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">ui_userLogin.py</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/ui_userLogin.py</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/ui_userLogin.py</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI/ui_userLogin.py</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI/ui_userLogin.py</value>
     <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Script">E:\ASU\Semester 6\Database\Cinema-Booking-System\Cinema-GUI\ui_userLogin.py</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Users\Ahmed hosam\Desktop\prject db\Cinema-Booking-System\Cinema-GUI\ui_userLogin.py</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.3">
     <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
@@ -271,14 +224,15 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
+    <value type="QString" key="PerfRecordArgsId">-e cpu-cycles --call-graph &quot;dwarf,4096&quot; -F 250</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">ui_empLogin.py</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/ui_empLogin.py</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/ui_empLogin.py</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI/ui_empLogin.py</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI/ui_empLogin.py</value>
     <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Script">E:\ASU\Semester 6\Database\Cinema-Booking-System\Cinema-GUI\ui_empLogin.py</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Users\Ahmed hosam\Desktop\prject db\Cinema-Booking-System\Cinema-GUI\ui_empLogin.py</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.4">
     <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
@@ -289,14 +243,15 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
+    <value type="QString" key="PerfRecordArgsId">-e cpu-cycles --call-graph &quot;dwarf,4096&quot; -F 250</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Customer.py</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/Customer.py</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/Customer.py</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI/Customer.py</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI/Customer.py</value>
     <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Script">E:\ASU\Semester 6\Database\Cinema-Booking-System\Cinema-GUI\Customer.py</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Users\Ahmed hosam\Desktop\prject db\Cinema-Booking-System\Cinema-GUI\Customer.py</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.5">
     <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
@@ -307,14 +262,15 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
+    <value type="QString" key="PerfRecordArgsId">-e cpu-cycles --call-graph &quot;dwarf,4096&quot; -F 250</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Employee.py</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/Employee.py</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/Employee.py</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI/Employee.py</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI/Employee.py</value>
     <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Script">E:\ASU\Semester 6\Database\Cinema-Booking-System\Cinema-GUI\Employee.py</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Users\Ahmed hosam\Desktop\prject db\Cinema-Booking-System\Cinema-GUI\Employee.py</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.6">
     <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
@@ -325,14 +281,15 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
+    <value type="QString" key="PerfRecordArgsId">-e cpu-cycles --call-graph &quot;dwarf,4096&quot; -F 250</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Movie.py</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/Movie.py</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/Movie.py</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI/Movie.py</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI/Movie.py</value>
     <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Script">E:\ASU\Semester 6\Database\Cinema-Booking-System\Cinema-GUI\Movie.py</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Users\Ahmed hosam\Desktop\prject db\Cinema-Booking-System\Cinema-GUI\Movie.py</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.7">
     <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
@@ -343,14 +300,15 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
+    <value type="QString" key="PerfRecordArgsId">-e cpu-cycles --call-graph &quot;dwarf,4096&quot; -F 250</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Showtime.py</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/Showtime.py</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/Showtime.py</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI/Showtime.py</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI/Showtime.py</value>
     <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Script">E:\ASU\Semester 6\Database\Cinema-Booking-System\Cinema-GUI\Showtime.py</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Users\Ahmed hosam\Desktop\prject db\Cinema-Booking-System\Cinema-GUI\Showtime.py</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.8">
     <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
@@ -361,14 +319,15 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
+    <value type="QString" key="PerfRecordArgsId">-e cpu-cycles --call-graph &quot;dwarf,4096&quot; -F 250</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">ui_createAcc.py</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/ui_createAcc.py</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/ui_createAcc.py</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI/ui_createAcc.py</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI/ui_createAcc.py</value>
     <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Script">E:\ASU\Semester 6\Database\Cinema-Booking-System\Cinema-GUI\ui_createAcc.py</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Users\Ahmed hosam\Desktop\prject db\Cinema-Booking-System\Cinema-GUI\ui_createAcc.py</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI</value>
    </valuemap>
    <valuemap type="QVariantMap" key="ProjectExplorer.Target.RunConfiguration.9">
     <value type="bool" key="Analyzer.Perf.Settings.UseGlobalSettings">true</value>
@@ -379,16 +338,17 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
+    <value type="QString" key="PerfRecordArgsId">-e cpu-cycles --call-graph &quot;dwarf,4096&quot; -F 250</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">ui_empHome.py</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/ui_empHome.py</value>
-    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI/ui_empHome.py</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">PythonEditor.RunConfiguration.C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI/ui_empHome.py</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI/ui_empHome.py</value>
     <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
-    <value type="QString" key="PythonEditor.RunConfiguation.Script">E:\ASU\Semester 6\Database\Cinema-Booking-System\Cinema-GUI\ui_empHome.py</value>
+    <value type="QString" key="PythonEditor.RunConfiguation.Script">C:\Users\Ahmed hosam\Desktop\prject db\Cinema-Booking-System\Cinema-GUI\ui_empHome.py</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
-    <value type="QString" key="RunConfiguration.WorkingDirectory.default">E:/ASU/Semester 6/Database/Cinema-Booking-System/Cinema-GUI</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">C:/Users/Ahmed hosam/Desktop/prject db/Cinema-Booking-System/Cinema-GUI</value>
    </valuemap>
-   <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">14</value>
+   <value type="qlonglong" key="ProjectExplorer.Target.RunConfigurationCount">11</value>
   </valuemap>
  </data>
  <data>

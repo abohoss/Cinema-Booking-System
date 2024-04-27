@@ -40,10 +40,10 @@
    <widget class="QPushButton" name="AddMovie">
     <property name="geometry">
      <rect>
-      <x>550</x>
-      <y>240</y>
-      <width>131</width>
-      <height>41</height>
+      <x>80</x>
+      <y>280</y>
+      <width>181</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="font">
@@ -58,10 +58,10 @@
    <widget class="QPushButton" name="AddShow">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>230</y>
-      <width>151</width>
-      <height>41</height>
+      <x>510</x>
+      <y>280</y>
+      <width>181</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="font">
@@ -76,10 +76,10 @@
    <widget class="QPushButton" name="removeShow">
     <property name="geometry">
      <rect>
-      <x>90</x>
-      <y>300</y>
-      <width>171</width>
-      <height>41</height>
+      <x>510</x>
+      <y>410</y>
+      <width>181</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="font">
@@ -94,10 +94,10 @@
    <widget class="QPushButton" name="removeMovie">
     <property name="geometry">
      <rect>
-      <x>550</x>
-      <y>300</y>
-      <width>141</width>
-      <height>41</height>
+      <x>80</x>
+      <y>410</y>
+      <width>181</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="font">
@@ -107,6 +107,25 @@
     </property>
     <property name="text">
      <string>Remove Movie</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="backBtn">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>&lt;--</string>
     </property>
    </widget>
   </widget>
