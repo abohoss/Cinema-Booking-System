@@ -87,7 +87,7 @@ Exec CustomerLogin
 	@Email = 'Yehiasakr@gmail.com',
 	@Password = '1234';
 go
-------------------------------------------Movie Procedures----------------------------------------------------------------
+------------------------------------------Movie/Halls Procedures----------------------------------------------------------------
 CREATE PROCEDURE AddMovie
     @Name VARCHAR(100),
     @Description VARCHAR(255),
@@ -115,6 +115,7 @@ BEGIN
 
 END;
 go
+
 CREATE PROCEDURE ListMovies
 AS
 BEGIN
@@ -123,6 +124,13 @@ BEGIN
     FROM Movie M
     JOIN Cast C ON M.Name = C.MovieName
     GROUP BY M.Name, M.Description, M.Genre;
+END;
+go
+
+CREATE PROCEDURE ListMovieNames
+AS
+BEGIN
+    SELECT Name from Movie       
 END;
 go
 
@@ -140,10 +148,17 @@ BEGIN
         DELETE FROM Movie WHERE Name = @name;
         SELECT CONCAT('Movie ', @name, ' deleted successfully.') AS Message;
     ELSE
-        SELECT 'Movie not found.' AS Message;
+        SELECT 'Movie not found' AS Message;
     END IF;
 END
 
+CREATE PROCEDURE ListHalls
+AS
+BEGIN
+    SELECT Hall_Num from Hall       
+END;
+go
+exec ListHalls
 ------------------------------------------Showtime Procedures----------------------------------------------------------------
 CREATE PROCEDURE AddShowTime
   @Time TIME,
