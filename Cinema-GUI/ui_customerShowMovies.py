@@ -15,8 +15,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QLabel, QListView, QMainWindow,
-    QMenuBar, QPushButton, QSizePolicy, QStatusBar,
+from PySide6.QtWidgets import (QApplication, QLabel, QMainWindow, QMenuBar,
+    QPushButton, QScrollArea, QSizePolicy, QStatusBar,
     QVBoxLayout, QWidget)
 
 class CustomerShowMovies(object):
@@ -40,10 +40,22 @@ class CustomerShowMovies(object):
 
         self.verticalLayout_2.addWidget(self.titleLabel)
 
-        self.moviesList = QListView(self.centralwidget)
+        self.scrollArea = QScrollArea(self.centralwidget)
+        self.scrollArea.setObjectName(u"scrollArea")
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollAreaWidgetContents = QWidget()
+        self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 780, 448))
+        self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents)
+        self.verticalLayout_4.setObjectName(u"verticalLayout_4")
+        self.moviesList = QVBoxLayout()
         self.moviesList.setObjectName(u"moviesList")
 
-        self.verticalLayout_2.addWidget(self.moviesList)
+        self.verticalLayout_4.addLayout(self.moviesList)
+
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+
+        self.verticalLayout_2.addWidget(self.scrollArea)
 
         self.signoutBtn = QPushButton(self.centralwidget)
         self.signoutBtn.setObjectName(u"signoutBtn")

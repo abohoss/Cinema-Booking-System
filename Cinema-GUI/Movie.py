@@ -14,26 +14,20 @@ def add_movie(movie,cursor):
 
 def list_movies(cursor):
         cursor.execute("EXEC ListMovies")
-
-        rows = cursor.fetchall()
-        for row in rows:
-            print("Movie Name:", row.Name)
-            print("Description:", row.Description)
-            print("Genre:", row.Genre)
-            print("Cast Members:", row.Actors)
-            print("-" * 50)
+        return cursor.fetchall()
     
 
 
 #---------------------------------------------------------------------------------------------------------------------------#
-# # Connect to the SQL Server database
-# conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
-# cursor = conn.cursor()
+if __name__ == "__main__":
+    # # Connect to the SQL Server database
+    conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-IG6PNT2};Database={Cinema}')
+    cursor = conn.cursor()
 
-# movie = Movie(Name='The Avengers', Description='Superhero movie', Genre='Action', EmpId=1, Cast='Robert Downey Jr., Chris Evans, Scarlett Johansson')
-# add_movie(movie)
+    movie = Movie(Name='The Magnificent Seven', Description='Seven gunmen from a variety of backgrounds are brought together by a vengeful young widow to protect her town from the private army of a destructive industrialist.', Genre='Action', EmpId=1, Cast='Denzel Washington, Chris Pratt, Ethan Hawke')
+    add_movie(movie, cursor)
 
-# list_movies()
+    list_movies(cursor)
 
-# # Close the connection
-# conn.close()
+    # # Close the connection
+    conn.close()

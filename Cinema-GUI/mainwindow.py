@@ -1,14 +1,18 @@
 import sys
 import pyodbc
-from PySide6.QtWidgets import QApplication, QMainWindow
+from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QGraphicsOpacityEffect
+from PySide6.QtGui import QPixmap, QFont
+from PySide6.QtCore import Qt
 from ui_form import Ui_MainWindow
 from ui_empLogin import EmpLogin
 from ui_userLogin import UserLogin
 from ui_createAcc import CreateAccount
+from ui_customerShowMovies import CustomerShowMovies
 from Employee import employee_login
 from Customer import customer_login
 from Customer import create_customer_account
 from Customer import Customer
+from Movie import list_movies
 
 class MainWindow(QMainWindow):
     def __init__(self, parent=None):
@@ -17,7 +21,7 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
 
         # Establish database connection and save cursor
-        self.conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
+        self.conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-IG6PNT2};Database={Cinema}')
         self.cursor = self.conn.cursor()
 
         self.email = None
@@ -46,6 +50,56 @@ class MainWindow(QMainWindow):
         self.ui.backBtn.clicked.connect(self.showUserLoginWindow)  # Connect backBtn to showUserLoginWindow
         self.ui.createAccBtn.clicked.connect(self.performCreateAccount)
 
+    def showCustomerShowMovies(self):
+        self.ui = CustomerShowMovies()
+        self.ui.setupUi(self)
+        self.ui.signoutBtn.clicked.connect(self.backHome)
+
+        # Add movies to moviesList QVBoxWidget
+        for movie in list_movies(self.cursor):
+            movie_card_widget = QWidget()
+            movie_card = QVBoxLayout(movie_card_widget)
+            # Movie image, Name, Genre, Cast
+            info_layout_widget = QWidget()
+            info_layout = QHBoxLayout(info_layout_widget)
+
+            image = QLabel()
+            image.setPixmap(QPixmap('images/imagePlaceholder.png').scaled(800, 150, Qt.KeepAspectRatio))
+            info_layout.addWidget(image)
+
+            info_text_layout_widget = QWidget()
+            info_text_layout = QVBoxLayout(info_text_layout_widget)
+            name = QLabel(movie.Name)
+            name.setFont(QFont(str(QFont.Helvetica), 18, int(QFont.Bold)))
+            name.setWordWrap(True)
+            info_text_layout.addWidget(name)
+            genre = QLabel(movie.Genre)
+            self.opacity_effect = QGraphicsOpacityEffect()
+            self.opacity_effect.setOpacity(0.3)
+            genre.setGraphicsEffect(self.opacity_effect)
+            self.ui.scrollArea.update()
+            genre.setWordWrap(True)
+            info_text_layout.addWidget(genre)
+            cast = QLabel(movie.Actors)
+            cast.setFont(QFont(str(QFont.Helvetica), 9, int(QFont.Thin)))
+            cast.setWordWrap(True)
+            info_text_layout.addWidget(cast)
+
+            info_text_layout.addStretch()
+            info_text_layout_widget.update()
+            info_layout.addWidget(info_text_layout_widget)
+            info_layout.addStretch()
+            movie_card.addWidget(info_layout_widget)
+            # Movie descritpion
+            description = QLabel(movie.Description)
+            description.setFont(QFont(str(QFont.Helvetica), 11))
+            description.setWordWrap(True)
+            movie_card.addWidget(description)
+            # Add movie card to moviesList
+            self.ui.moviesList.addWidget(movie_card_widget)
+        self.ui.scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+
+
     def backHome(self):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
@@ -72,7 +126,7 @@ class MainWindow(QMainWindow):
         # Call customer_login with retrieved values and cursor
         if customer_login(email, password, self.cursor):
             self.email = email
-            print("Success")
+            self.showCustomerShowMovies()
         else:
             print("No Customer with this Email")  # Error Case
 
