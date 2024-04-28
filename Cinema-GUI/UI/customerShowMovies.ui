@@ -47,8 +47,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>780</width>
-         <height>448</height>
+         <width>776</width>
+         <height>380</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -60,7 +60,24 @@
      </widget>
     </item>
     <item>
+     <widget class="QPushButton" name="rateBtn">
+      <property name="font">
+       <font>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Rate</string>
+      </property>
+     </widget>
+    </item>
+    <item>
      <widget class="QPushButton" name="signoutBtn">
+      <property name="font">
+       <font>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string>Sign out</string>
       </property>
@@ -74,7 +91,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

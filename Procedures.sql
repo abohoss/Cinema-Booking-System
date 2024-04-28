@@ -36,6 +36,28 @@ BEGIN
     WHERE Email = @Email AND Password = @Password;
 END;
 GO
+CREATE PROCEDURE addRating
+    @MovieName VARCHAR(100),
+    @CustomerEmail VARCHAR(100),
+    @Rating INT ,
+    @Comment VARCHAR(250)
+AS
+BEGIN
+    -- Check if the rating already exists
+    IF NOT EXISTS (
+        SELECT 1 FROM Rate WHERE MovieName = @MovieName AND CustomerEmail = @CustomerEmail
+    )
+    BEGIN
+        -- Insert the rating into the Rate table
+        INSERT INTO Rate (MovieName, CustomerEmail, Rating, Comment)
+        VALUES (@MovieName, @CustomerEmail, @Rating, @Comment);
+    END
+    ELSE
+    BEGIN
+        PRINT 'Rating already exists';
+    END
+END;
+GO
 ---------------------------------------Employee Procedures--------------------------------------------------
 CREATE PROCEDURE CreateEmployeeAccount
     @EmpId INT,

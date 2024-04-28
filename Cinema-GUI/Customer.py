@@ -80,6 +80,11 @@ def ReserveTicket(
     # Commit the transaction
     cursor.commit()
     print("Reservation successful!")
+    return price
+
+def add_rating(movieName, email,rate, comment, cursor):
+    cursor.execute("Exec addRating ?, ?, ?, ?",movieName, email, rate, comment)
+    cursor.commit()
 
 
 # # Connect to the SQL Server database

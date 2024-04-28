@@ -15,8 +15,10 @@ from UI_.ui_AddShowTime import ShowAdd
 from UI_.ui_ReserveView import ReserveView
 from UI_.ui_RemoveShowTime import RemoveShowTime
 from UI_.ui_customerShowMovies import CustomerShowMovies
+from UI_.ui_success import Success
+from UI_.ui_MovieRating import MovieRating
 from Employee import employee_login
-from Customer import customer_login , create_customer_account, ReserveTicket, Customer, validate_email
+from Customer import customer_login , create_customer_account, ReserveTicket, Customer, validate_email, add_rating
 from Movie import Movie,add_movie, list_movieNames, list_Halls, listMovieShowTimes,listMovieShowDates,listMovieShowHalls, getBookedSeats,delete_movie, list_movies
 from Showtime import Showtime,add_showtime, delete_showtime, List_showtimes
 
@@ -63,6 +65,44 @@ class MainWindow(QMainWindow):
         self.ui.backBtn.clicked.connect(self.showUserLoginWindow)  # Connect backBtn to showUserLoginWindow
         self.ui.createAccBtn.clicked.connect(self.performCreateAccount)
 
+    def showSuccessWindow(self,price,Seats_List):
+            self.ui = Success()
+            self.ui.setupUi(self)
+            self.ui.priceLabel.setText(f"Total Price: {price} EGP")
+            self.ui.seatsLabel.setText(f"Seats: {Seats_List}")
+            self.ui.returnBtn.clicked.connect(self.showCustomerShowMovies)  # Connect backBtn to showUserLoginWindow
+
+    def showRating(self):
+        self.ui=MovieRating()
+        self.ui.setupUi(self)
+        self.ui.Back.clicked.connect(self.showCustomerShowMovies)
+        self.ui.confirm.clicked.connect(self.confirmRating)
+        movie_names = list_movieNames(self.cursor)
+        self.ui.name.clear()  # Clear the combobox before populating it
+        for index, movie_name in enumerate(movie_names):
+            self.ui.name.addItem(movie_name)
+            self.ui.name.setItemData(index, movie_name)  # Set the data for each item
+        self.ui.rating.clear()
+        for index in range(0,6):
+            self.ui.rating.addItem(str(index))
+            self.ui.rating.setItemData(index,str(index))
+    
+    def confirmRating(self):
+        Name = self.ui.name.currentData()
+        rate = int(self.ui.rating.currentData())
+        comm = self.ui.comment.text()
+        if not comm:
+            self.ui.label_6.setStyleSheet("color: red;")
+            self.ui.label_6.setText("Comment Field is Empty")
+        # try:
+        add_rating(Name, self.email ,rate, comm, self.cursor)
+        self.ui.label_6.setStyleSheet("color: green;")
+        self.ui.label_6.setText("Rating Added Successfully")
+        # except:
+        #     self.ui.label_6.setStyleSheet("color: red;")
+        #     self.ui.label_6.setText("You already rated the movie!")
+
+
     def setMovieName(self, movie_name):
         self.movieName = movie_name
         print(movie_name)
@@ -72,6 +112,7 @@ class MainWindow(QMainWindow):
         self.ui = CustomerShowMovies()
         self.ui.setupUi(self)
         self.ui.signoutBtn.clicked.connect(self.backHome)
+        self.ui.rateBtn.clicked.connect(self.showRating)
         self.movieName = None
 
         # Add movies to moviesList QVBoxWidget
@@ -375,7 +416,7 @@ class MainWindow(QMainWindow):
         for i in range(1, 21):
             seat_button = getattr(self.ui, f"seat{i}")
             seat_button.setEnabled(True)
-            seat_button.setChecked(False)
+            seat_button.setStyleSheet("")
         booked_Seats = getBookedSeats(self.cursor, self.movieName, ShowDate, ShowTime, HallId)
 
         if not booked_Seats:
@@ -383,7 +424,14 @@ class MainWindow(QMainWindow):
         for i in booked_Seats:
             seat_button = getattr(self.ui, f"seat{i}")
             seat_button.setEnabled(False)
-            seat_button.setChecked(True)
+            seat_button.setStyleSheet(
+                "QPushButton {"
+                "   background-color: white;"
+                "   color: black;"
+                "   border-radius: 10px;"
+                "   padding: 5px;"
+                "}"
+            )
 
 
 
@@ -408,17 +456,15 @@ class MainWindow(QMainWindow):
             self.ui.oLabel.setText("Please Select a Seat")
             return
                 
-        try:
-            ReserveTicket(self.email,ShowTime,ShowDate,HallId,self.movieName,Seats_List,ReserveType,paymentType,self.cursor)
-            self.ui.oLabel.setStyleSheet("color: green;")
-            self.ui.oLabel.setText("Reservation Created Successfully")
-            booked_Seats = getBookedSeats(self.cursor,self.movieName,ShowDate,ShowTime,HallId)
-            for i in booked_Seats:
-                seat_button = getattr(self.ui, f"seat{i}")
-                seat_button.setEnabled(False)
-        except:
-                self.ui.oLabel.setStyleSheet("color: red;")
-                self.ui.oLabel.setText("Seats Already Taken")
+
+        price = ReserveTicket(self.email,ShowTime,ShowDate,HallId,self.movieName,Seats_List,ReserveType,paymentType,self.cursor)
+        self.ui.oLabel.setStyleSheet("color: green;")
+        self.ui.oLabel.setText("Reservation Created Successfully")
+        booked_Seats = getBookedSeats(self.cursor,self.movieName,ShowDate,ShowTime,HallId)
+        for i in booked_Seats:
+            seat_button = getattr(self.ui, f"seat{i}")
+            seat_button.setEnabled(False)
+        self.showSuccessWindow(price,Seats_List)
 
 
     def performEmpLogin(self):

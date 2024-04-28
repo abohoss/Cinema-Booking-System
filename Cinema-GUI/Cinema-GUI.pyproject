@@ -28,6 +28,10 @@
         "UI/RemoveShowTime.ui",
         "UI_/ui_RemoveShowTime.py",
         "UI/customerShowMovies.ui",
-        "UI_/ui_customerShowMovies.py"
+        "UI_/ui_customerShowMovies.py",
+        "UI/success.ui",
+        "UI_/ui_success.py",
+        "UI_/ui_MovieRating.py",
+        "UI/MovieRating.ui"
     ]
 }

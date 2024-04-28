@@ -45,7 +45,7 @@ class CustomerShowMovies(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 780, 448))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 776, 380))
         self.verticalLayout_4 = QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.moviesList = QVBoxLayout()
@@ -57,15 +57,24 @@ class CustomerShowMovies(object):
 
         self.verticalLayout_2.addWidget(self.scrollArea)
 
+        self.rateBtn = QPushButton(self.centralwidget)
+        self.rateBtn.setObjectName(u"rateBtn")
+        font1 = QFont()
+        font1.setPointSize(9)
+        self.rateBtn.setFont(font1)
+
+        self.verticalLayout_2.addWidget(self.rateBtn)
+
         self.signoutBtn = QPushButton(self.centralwidget)
         self.signoutBtn.setObjectName(u"signoutBtn")
+        self.signoutBtn.setFont(font1)
 
         self.verticalLayout_2.addWidget(self.signoutBtn)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 800, 21))
+        self.menubar.setGeometry(QRect(0, 0, 800, 25))
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
@@ -79,6 +88,7 @@ class CustomerShowMovies(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.titleLabel.setText(QCoreApplication.translate("MainWindow", u"Movies", None))
+        self.rateBtn.setText(QCoreApplication.translate("MainWindow", u"Rate", None))
         self.signoutBtn.setText(QCoreApplication.translate("MainWindow", u"Sign out", None))
     # retranslateUi
 
