@@ -39,6 +39,10 @@ def list_Halls(cursor):
                 hall_nums.append(row)
         return hall_nums
 
+def delete_movie(name, cursor):
+        cursor.execute("Exec DeleteMovie ?",name)
+        cursor.commit()
+
 def listMovieShowTimes(cursor, movie_name, hall_num, show_date):
     cursor.execute("Exec ListMovieShowTimes ?,?,?", movie_name, hall_num, show_date)
     rows = cursor.fetchall()
@@ -83,8 +87,8 @@ def getBookedSeats(cursor, movie_name, show_date, show_time, hall_num):
     return booked_seats
 # # # ---------------------------------------------------------------------------------------------------------------------------#
 # Connect to the SQL Server database
-conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
-cursor = conn.cursor()
+# conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
+# cursor = conn.cursor()
 
 # # movie = Movie(Name='Thor', Description='Superhero movie', Genre='Action', EmpId=1, Cast='Chris Hemsworth, Tom Hiddleston, Natalie Portman, Anthony Hopkins')
 # # add_movie(movie,cursor)

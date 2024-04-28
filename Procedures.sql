@@ -157,6 +157,31 @@ BEGIN
 END;
 go
 
+CREATE PROCEDURE DeleteMovie
+    @name VARCHAR(100)
+AS
+BEGIN
+    UPDATE Seat SET Booked = 0 FROM Seat JOIN ReservedSeats ON Seat.Seat_ID = ReservedSeats.Seat_No AND Seat.Hall_no=ReservedSeats.Seat_Hall WHERE ReservedSeats.Movie_Name = @name;
+    DELETE FROM Rate WHERE MovieName = @name;
+    DELETE FROM Cast WHERE MovieName = @name;
+    DELETE FROM ReservedSeats WHERE Movie_Name = @name; 
+    DELETE FROM Reserve WHERE MovieName = @name;
+    DELETE FROM ShowTime WHERE Movie_Name = @name;
+    DELETE FROM Movie WHERE Name = @name;
+END;
+Exec DeleteMovie
+@name = 'Se7en';
+go
+CREATE PROCEDURE selectMovie
+    @name VARCHAR(100)
+AS
+BEGIN
+    SELECT * FROM Movie WHERE Name = @name;
+END;
+GO
+Exec selectMovie
+@name = 'Se7en';
+go
 CREATE PROCEDURE ListHalls
 AS
 BEGIN
@@ -190,6 +215,34 @@ BEGIN
   INSERT INTO ShowTime (Time, Date, Movie_Name, Hall_Number)
   VALUES (@Time, @Date, @MovieName, @HallNumber);
 END;
+
+CREATE PROCEDURE DeleteShowTime
+  @Time TIME,
+  @Date DATE,
+  @MovieName VARCHAR(100),
+  @HallNumber INT
+AS
+BEGIN
+    UPDATE Seat SET Booked = 0 FROM Seat JOIN ReservedSeats ON Seat.Seat_ID = ReservedSeats.Seat_No AND Seat.Hall_no=ReservedSeats.Seat_Hall WHERE ReservedSeats.ShowTime= @Time AND ReservedSeats.ShowDate=@Date AND ReservedSeats.Hall_No=@HallNumber AND ReservedSeats.Movie_Name=@MovieName;
+    DELETE FROM ReservedSeats WHERE ShowTime= @Time AND ShowDate=@Date AND Hall_No=@HallNumber AND Movie_Name=@MovieName; 
+    DELETE FROM Reserve WHERE Show_Time = @Time AND Show_Date= @Date AND MovieName=@MovieName AND Hall_Id= @HallNumber;
+    DELETE FROM ShowTime WHERE Time = @Time AND Date = @Date AND Movie_Name = @MovieName AND Hall_Number = @HallNumber;
+END;
+
+EXEC DeleteShowTime
+  @Time = '10:00:00.0000000',
+  @Date = '2024-04-28',
+  @MovieName = 'kheir w baraka',
+  @HallNumber = '1';
+  GO
+
+CREATE PROCEDURE ListShowTimes
+AS 
+BEGIN
+    SELECT CONVERT(VARCHAR(5), Time, 108), Date, Movie_Name, Hall_Number FROM ShowTime
+END;
+Exec ListShowTimes
+Go
 ------------------------------------------Reserve+Transaction Procedure----------------------------------------------------------------
 CREATE PROCEDURE ReserveTicket
     @Show_Time TIME,
