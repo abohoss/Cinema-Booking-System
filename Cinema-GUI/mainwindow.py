@@ -642,6 +642,8 @@ class MainWindow(QMainWindow):
             create_customer_account(customer,self.cursor)
             self.ui.oLabel.setStyleSheet("color: green;")
             self.ui.oLabel.setText("Account Created Successfully")
+            self.email = customer.email
+            self.showCustomerShowMovies()
         except:
             self.ui.oLabel.setStyleSheet("color: red;")
             self.ui.oLabel.setText("Email Already Exists")
