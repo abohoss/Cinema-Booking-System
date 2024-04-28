@@ -1,5 +1,7 @@
 import pyodbc
 from datetime import datetime
+
+
 class Showtime:
     def __init__(self, Time, Date, MovieName, Hall):
         self.Time = Time
@@ -7,14 +9,21 @@ class Showtime:
         self.MovieName = MovieName
         self.Hall = Hall
 
-def add_showtime(showtime,cursor):
-        cursor.execute("EXEC AddShowTime ?, ?, ?, ?", showtime.Time, showtime.Date, showtime.MovieName, showtime.Hall)
-        cursor.commit()
 
-def delete_showtime(Time, Date, MovieName, Hall_no,cursor):
-    cursor.execute("Exec deleteShowTime ?, ?, ?, ?", Time, Date, MovieName, Hall_no)
+def add_showtime(showtime, cursor):
+    cursor.execute(
+        "EXEC AddShowTime ?, ?, ?, ?",
+        showtime.Time,
+        showtime.Date,
+        showtime.MovieName,
+        showtime.Hall,
+    )
     cursor.commit()
 
+
+def delete_showtime(Time, Date, MovieName, Hall_no, cursor):
+    cursor.execute("Exec deleteShowTime ?, ?, ?, ?", Time, Date, MovieName, Hall_no)
+    cursor.commit()
 
 
 # def convert_date(date_str):
@@ -24,6 +33,7 @@ def delete_showtime(Time, Date, MovieName, Hall_no,cursor):
 #     formatted_date = date_obj.strftime('%d/%m/%y')
 #     return formatted_date
 
+
 def List_showtimes(cursor):
     cursor.execute("Exec ListShowTimes")
     shows = []
@@ -31,8 +41,6 @@ def List_showtimes(cursor):
     for row in rows:
         shows.append(row)
     return shows
-
-
 
 
 # # Connect to the SQL Server database
