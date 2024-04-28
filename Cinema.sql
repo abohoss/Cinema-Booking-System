@@ -31,6 +31,7 @@ CREATE TABLE Employee (
       Description VARCHAR(255),
       Genre VARCHAR(50),
       Employee_Id INT,
+	  image_url VARCHAR(255),
       FOREIGN KEY (Employee_Id) REFERENCES Employee(Emp_Id)
 );
 
