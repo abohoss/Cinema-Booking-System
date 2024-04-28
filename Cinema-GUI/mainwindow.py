@@ -29,7 +29,7 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
 
         # Establish database connection and save cursor
-        self.conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-IG6PNT2};Database={Cinema}')
+        self.conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
         self.cursor = self.conn.cursor()
 
         self.email = None
@@ -151,9 +151,7 @@ class MainWindow(QMainWindow):
             self.ui.reserveType.setText('Standard')
         else:
             self.ui.reserveType.setText('IMAX')
-        print(self.ui.time.currentData())
-        print(self.ui.date.currentData())
-        print(self.ui.hallnum.currentData())
+
         self.disableBookedSeats()
         self.ui.time.currentIndexChanged.connect(self.disableBookedSeats)
         self.ui.date.currentIndexChanged.connect(self.disableBookedSeats)
@@ -163,7 +161,6 @@ class MainWindow(QMainWindow):
         self.ui.confirmBook.clicked.connect(self.reserveSeats)
 
     def updateShowTime(self):
-        print("Here")
         show_times = listMovieShowTimes(self.cursor,self.movieName,self.ui.hallnum.currentData(),self.ui.date.currentData())
         self.ui.time.clear()  # Clear the combobox before populating it
         for index, showtime in enumerate(show_times):
