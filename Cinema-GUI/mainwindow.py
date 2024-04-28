@@ -1,5 +1,6 @@
 import sys
 import pyodbc
+import urllib.request
 from datetime import datetime
 from PySide6.QtCore import Qt, QDate, QTime
 from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton
@@ -124,7 +125,10 @@ class MainWindow(QMainWindow):
             info_layout = QHBoxLayout(info_layout_widget)
 
             image = QLabel()
-            image.setPixmap(QPixmap('images/imagePlaceholder.png').scaled(800, 150, Qt.KeepAspectRatio))
+            data = urllib.request.urlopen(movie.image_url).read()
+            pixmap = QPixmap()
+            pixmap.loadFromData(data)
+            image.setPixmap(pixmap.scaled(800, 150, Qt.KeepAspectRatio))
             info_layout.addWidget(image)
 
             info_text_layout_widget = QWidget()
@@ -368,7 +372,11 @@ class MainWindow(QMainWindow):
             self.ui.label_6.setStyleSheet("color: red;")
             self.ui.label_6.setText("Please specify a Cast!")
             return
-        movie = Movie(Name,Desc,Genre,self.emp_id,Cast)
+        image_url = self.ui.imageUrl.text()
+        if image_url == "":
+            self.ui.label_6.setStyleSheet("color: red;")
+            self.ui.label_6.setText("Please specify a Image url!")
+        movie = Movie(Name,Desc,Genre,self.emp_id,image_url,Cast)
         try:
             add_movie(movie,self.cursor)
             self.ui.label_6.setStyleSheet("color: green;")

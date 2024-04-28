@@ -115,6 +115,7 @@ CREATE PROCEDURE AddMovie
     @Description VARCHAR(255),
     @Genre VARCHAR(50),
     @EmployeeId INT,
+	@image_url VARCHAR(255),
     @Cast NVARCHAR(MAX)
 AS
 BEGIN
@@ -127,8 +128,8 @@ BEGIN
     END;
 
     -- Insert the movie into the Movie table
-    INSERT INTO Movie (Name, Description, Genre, Employee_Id)
-    VALUES (@Name, @Description, @Genre, @EmployeeId);
+    INSERT INTO Movie (Name, Description, Genre, Employee_Id, image_url)
+    VALUES (@Name, @Description, @Genre, @EmployeeId, @image_url);
 
     -- Insert the cast members into the Cast table
     INSERT INTO Cast (MovieName, Actors)
@@ -141,11 +142,11 @@ go
 CREATE PROCEDURE ListMovies
 AS
 BEGIN
-    SELECT M.Name, M.Description, M.Genre,
+    SELECT M.Name, M.Description, M.Genre, M.image_url,
         STRING_AGG(C.Actors, ', ') AS Actors
     FROM Movie M
     JOIN Cast C ON M.Name = C.MovieName
-    GROUP BY M.Name, M.Description, M.Genre;
+    GROUP BY M.Name, M.Description, M.Genre, M.image_url;
 END;
 go
 
@@ -192,7 +193,7 @@ BEGIN
     DELETE FROM Movie WHERE Name = @name;
 END;
 Exec DeleteMovie
-@name = 'Se7en';
+@name = 'Interstellar';
 go
 CREATE PROCEDURE selectMovie
     @name VARCHAR(100)

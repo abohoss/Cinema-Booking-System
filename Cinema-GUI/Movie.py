@@ -2,21 +2,23 @@ import pyodbc
 
 
 class Movie:
-    def __init__(self, Name, Description, Genre, EmpId, Cast):
+    def __init__(self, Name, Description, Genre, EmpId, image_url, Cast):
         self.Name = Name
         self.Description = Description
         self.Genre = Genre
         self.EmpId = EmpId
         self.Cast = Cast
+        self.imageUrl = image_url
 
 
 def add_movie(movie, cursor):
     cursor.execute(
-        "EXEC AddMovie ?, ?, ?, ?, ?",
+        "EXEC AddMovie ?, ?, ?, ?, ?, ?",
         movie.Name,
         movie.Description,
         movie.Genre,
         movie.EmpId,
+        movie.imageUrl,
         movie.Cast,
     )
     cursor.commit()
