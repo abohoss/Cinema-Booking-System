@@ -418,7 +418,7 @@ class MainWindow(QMainWindow):
             seat_button.setEnabled(True)
             seat_button.setStyleSheet("")
         booked_Seats = getBookedSeats(self.cursor, self.movieName, ShowDate, ShowTime, HallId)
-
+        # print(booked_Seats)
         if not booked_Seats:
             return
         for i in booked_Seats:
@@ -456,15 +456,18 @@ class MainWindow(QMainWindow):
             self.ui.oLabel.setText("Please Select a Seat")
             return
                 
-
-        price = ReserveTicket(self.email,ShowTime,ShowDate,HallId,self.movieName,Seats_List,ReserveType,paymentType,self.cursor)
-        self.ui.oLabel.setStyleSheet("color: green;")
-        self.ui.oLabel.setText("Reservation Created Successfully")
-        booked_Seats = getBookedSeats(self.cursor,self.movieName,ShowDate,ShowTime,HallId)
-        for i in booked_Seats:
-            seat_button = getattr(self.ui, f"seat{i}")
-            seat_button.setEnabled(False)
-        self.showSuccessWindow(price,Seats_List)
+        try:
+            price = ReserveTicket(self.email,ShowTime,ShowDate,HallId,self.movieName,Seats_List,ReserveType,paymentType,self.cursor)
+            self.ui.oLabel.setStyleSheet("color: green;")
+            self.ui.oLabel.setText("Reservation Created Successfully")
+            booked_Seats = getBookedSeats(self.cursor,self.movieName,ShowDate,ShowTime,HallId)
+            for i in booked_Seats:
+                seat_button = getattr(self.ui, f"seat{i}")
+                seat_button.setEnabled(False)
+            self.showSuccessWindow(price,Seats_List)
+        except:
+            self.ui.oLabel.setStyleSheet("color: red;")
+            self.ui.oLabel.setText("Seats Already Booked")
 
 
     def performEmpLogin(self):

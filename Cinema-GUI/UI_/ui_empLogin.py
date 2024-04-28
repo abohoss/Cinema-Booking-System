@@ -28,6 +28,7 @@ class EmpLogin(object):
         self.pField = QLineEdit(self.centralwidget)
         self.pField.setObjectName(u"pField")
         self.pField.setGeometry(QRect(210, 230, 201, 28))
+        self.pField.setEchoMode(QLineEdit.Password)
         self.backBtn = QPushButton(self.centralwidget)
         self.backBtn.setObjectName(u"backBtn")
         self.backBtn.setGeometry(QRect(390, 400, 181, 41))

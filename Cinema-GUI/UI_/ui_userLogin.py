@@ -45,6 +45,7 @@ class UserLogin(object):
         self.passField = QLineEdit(self.centralwidget)
         self.passField.setObjectName(u"passField")
         self.passField.setGeometry(QRect(210, 260, 201, 28))
+        self.passField.setEchoMode(QLineEdit.Password)
         self.label_2 = QLabel(self.centralwidget)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setGeometry(QRect(50, 200, 91, 41))
