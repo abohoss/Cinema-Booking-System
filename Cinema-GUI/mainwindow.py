@@ -29,12 +29,12 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
 
         # Establish database connection and save cursor
-        self.conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
+        self.conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-IG6PNT2};Database={Cinema}')
         self.cursor = self.conn.cursor()
 
         self.email = None
         self.emp_id = None
-        self.movieName = "The Avengers"
+        self.movieName = None
 
 
 
@@ -62,6 +62,11 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
         self.ui.backBtn.clicked.connect(self.showUserLoginWindow)  # Connect backBtn to showUserLoginWindow
         self.ui.createAccBtn.clicked.connect(self.performCreateAccount)
+
+    def setMovieName(self, movie_name):
+        self.movieName = movie_name
+        print(movie_name)
+        self.showReserve()
 
     def showCustomerShowMovies(self):
         self.ui = CustomerShowMovies()
@@ -97,7 +102,7 @@ class MainWindow(QMainWindow):
             info_layout.addWidget(info_text_layout_widget)
 
             reserve_btn = QPushButton(QIcon("images/book_online_FILL0_wght200_GRAD0_opsz20.png"), "Book Tickets")
-            reserve_btn.clicked.connect(lambda checked, movie_name = movie.Name: self.showReserveStub(movie_name))
+            reserve_btn.clicked.connect(lambda checked, movie_name = movie.Name: self.setMovieName(movie_name))
             info_layout.addWidget(reserve_btn)
 
             info_layout.addStretch()
