@@ -87,7 +87,7 @@ Exec CustomerLogin
 	@Email = 'yehiasakr@gmail.com',
 	@Password = '1234';
 go
-------------------------------------------Movie Procedures----------------------------------------------------------------
+------------------------------------------Movie/Halls Procedures----------------------------------------------------------------
 CREATE PROCEDURE AddMovie
     @Name VARCHAR(100),
     @Description VARCHAR(255),
@@ -115,6 +115,7 @@ BEGIN
 
 END;
 go
+
 CREATE PROCEDURE ListMovies
 AS
 BEGIN
@@ -123,7 +124,70 @@ BEGIN
     FROM Movie M
     JOIN Cast C ON M.Name = C.MovieName
     GROUP BY M.Name, M.Description, M.Genre;
-END
+END;
+go
+
+CREATE PROCEDURE ListMovieNames
+AS
+BEGIN
+    SELECT Name from Movie       
+END;
+go
+CREATE PROCEDURE ListMovieShowTimes
+    @Name VARCHAR(100),
+	@HallId INT,
+	@Showdate date
+AS
+BEGIN
+    SELECT CONVERT(VARCHAR(5), Time, 108) FROM ShowTime WHERE Movie_Name = @Name and Hall_Number = @HallId  and Date = @Showdate;
+END;
+CREATE PROCEDURE ListMovieShowDates
+	@Name VARCHAR(100),
+	@HallId int
+AS
+BEGIN
+    SELECT Date from ShowTime where Movie_Name = @Name and Hall_Number = @HallId     
+END;
+go
+CREATE PROCEDURE ListMovieShowHalls
+	@Name VARCHAR(100)
+AS
+BEGIN
+    SELECT Hall_Number from ShowTime where Movie_Name = @Name       
+END;
+go
+
+CREATE PROCEDURE DeleteMovie
+    @name VARCHAR(100)
+AS
+BEGIN
+    UPDATE Seat SET Booked = 0 FROM Seat JOIN ReservedSeats ON Seat.Seat_ID = ReservedSeats.Seat_No AND Seat.Hall_no=ReservedSeats.Seat_Hall WHERE ReservedSeats.Movie_Name = @name;
+    DELETE FROM Rate WHERE MovieName = @name;
+    DELETE FROM Cast WHERE MovieName = @name;
+    DELETE FROM ReservedSeats WHERE Movie_Name = @name; 
+    DELETE FROM Reserve WHERE MovieName = @name;
+    DELETE FROM ShowTime WHERE Movie_Name = @name;
+    DELETE FROM Movie WHERE Name = @name;
+END;
+Exec DeleteMovie
+@name = 'Se7en';
+go
+CREATE PROCEDURE selectMovie
+    @name VARCHAR(100)
+AS
+BEGIN
+    SELECT * FROM Movie WHERE Name = @name;
+END;
+GO
+Exec selectMovie
+@name = 'Se7en';
+go
+CREATE PROCEDURE ListHalls
+AS
+BEGIN
+    SELECT Hall_Num from Hall       
+END;
+go
 ------------------------------------------Showtime Procedures----------------------------------------------------------------
 CREATE PROCEDURE AddShowTime
   @Time TIME,
@@ -151,6 +215,34 @@ BEGIN
   INSERT INTO ShowTime (Time, Date, Movie_Name, Hall_Number)
   VALUES (@Time, @Date, @MovieName, @HallNumber);
 END;
+
+CREATE PROCEDURE DeleteShowTime
+  @Time TIME,
+  @Date DATE,
+  @MovieName VARCHAR(100),
+  @HallNumber INT
+AS
+BEGIN
+    UPDATE Seat SET Booked = 0 FROM Seat JOIN ReservedSeats ON Seat.Seat_ID = ReservedSeats.Seat_No AND Seat.Hall_no=ReservedSeats.Seat_Hall WHERE ReservedSeats.ShowTime= @Time AND ReservedSeats.ShowDate=@Date AND ReservedSeats.Hall_No=@HallNumber AND ReservedSeats.Movie_Name=@MovieName;
+    DELETE FROM ReservedSeats WHERE ShowTime= @Time AND ShowDate=@Date AND Hall_No=@HallNumber AND Movie_Name=@MovieName; 
+    DELETE FROM Reserve WHERE Show_Time = @Time AND Show_Date= @Date AND MovieName=@MovieName AND Hall_Id= @HallNumber;
+    DELETE FROM ShowTime WHERE Time = @Time AND Date = @Date AND Movie_Name = @MovieName AND Hall_Number = @HallNumber;
+END;
+
+EXEC DeleteShowTime
+  @Time = '10:00:00.0000000',
+  @Date = '2024-04-28',
+  @MovieName = 'kheir w baraka',
+  @HallNumber = '1';
+  GO
+
+CREATE PROCEDURE ListShowTimes
+AS 
+BEGIN
+    SELECT CONVERT(VARCHAR(5), Time, 108), Date, Movie_Name, Hall_Number FROM ShowTime
+END;
+Exec ListShowTimes
+Go
 ------------------------------------------Reserve+Transaction Procedure----------------------------------------------------------------
 CREATE PROCEDURE ReserveTicket
     @Show_Time TIME,
@@ -228,16 +320,34 @@ BEGIN
         AND Hall_no = @Hall_Id;
 END;
 
+CREATE PROCEDURE GetBookedSeats
+	@Movie_Name Varchar(100),
+    @Show_Date DATE,
+	@Show_Time TIME,
+    @Hall_Id INT
+AS
+BEGIN
+    SELECT Seat_No
+    FROM ReservedSeats
+    WHERE ShowTime = @Show_Time
+        AND ShowDate = @Show_Date
+        AND Hall_No = @Hall_Id;
+END;
+exec GetBookedSeats
+	@Movie_Name = 'The Avengers',
+	@Show_Date = '2024-05-25',
+	@Show_Time = '00:00:00',
+	@Hall_Id = 4
 -------------------------------------------------Reserve Test-----------------------------------------------
 
 EXEC dbo.ReserveTicket
-		@Show_Time = '20:00' ,
-        @Show_Date = '2024-05-01' ,
+		@Show_Time = '00:00' ,
+        @Show_Date = '2024-05-25' ,
         @Hall_Id = 1 ,
         @MovieName = 'The Avengers' ,
         @Customer_Email = 'Yehiasakr@gmail.com' ,
 		@PaymentType = 'Credit Card' ,
         @Reserveprice = 50 ,
         @Reservetype = 'Premium',
-		@Seats = '1,2,3'
+		@Seats = '18,20'
 
