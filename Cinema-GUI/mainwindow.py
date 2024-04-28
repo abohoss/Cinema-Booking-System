@@ -72,6 +72,7 @@ class MainWindow(QMainWindow):
         self.ui = CustomerShowMovies()
         self.ui.setupUi(self)
         self.ui.signoutBtn.clicked.connect(self.backHome)
+        self.movieName = None
 
         # Add movies to moviesList QVBoxWidget
         for movie in list_movies(self.cursor):
@@ -128,7 +129,7 @@ class MainWindow(QMainWindow):
     def showReserve(self):
         self.ui = ReserveView()
         self.ui.setupUi(self)
-        self.ui.backBtn.clicked.connect(self.showUserLoginWindow)
+        self.ui.backBtn.clicked.connect(self.showCustomerShowMovies)
 
         hall_numbers = listMovieShowHalls(self.cursor,self.movieName)
         self.ui.hallnum.clear()  # Clear the combobox before populating it
@@ -188,7 +189,7 @@ class MainWindow(QMainWindow):
     def showReserve(self):
         self.ui = ReserveView()
         self.ui.setupUi(self)
-        self.ui.backBtn.clicked.connect(self.showUserLoginWindow)
+        self.ui.backBtn.clicked.connect(self.showCustomerShowMovies)
 
         hall_numbers = listMovieShowHalls(self.cursor,self.movieName)
         self.ui.hallnum.clear()  # Clear the combobox before populating it
