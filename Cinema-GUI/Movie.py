@@ -38,11 +38,14 @@ def list_Halls(cursor):
         for row in rows:
                 hall_nums.append(row)
         return hall_nums
+def delete_movie(name, cursor):
+        cursor.execute("Exec DeleteMovie ?",name)
+        cursor.commit()
 
 # # ---------------------------------------------------------------------------------------------------------------------------#
 # Connect to the SQL Server database
-conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
-cursor = conn.cursor()
+# conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
+# cursor = conn.cursor()
 
 # movie = Movie(Name='Thor', Description='Superhero movie', Genre='Action', EmpId=1, Cast='Chris Hemsworth, Tom Hiddleston, Natalie Portman, Anthony Hopkins')
 # add_movie(movie,cursor)
@@ -51,4 +54,4 @@ cursor = conn.cursor()
 # list_movieNames(cursor)
 # list_Halls(cursor)
 # Close the connection
-conn.close()
+# conn.close()

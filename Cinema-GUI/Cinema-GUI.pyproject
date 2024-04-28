@@ -22,6 +22,8 @@
         "RemoveMovie.ui",
         "ui_RemoveMovie.py",
         "AddShowTime.ui",
-        "ui_AddShowTime.py"
+        "ui_AddShowTime.py",
+        "RemoveShowTime.ui",
+        "ui_RemoveShowTime.py"
     ]
 }

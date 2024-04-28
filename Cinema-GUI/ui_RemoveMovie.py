@@ -15,7 +15,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QLabel, QLineEdit, QMainWindow,
+from PySide6.QtWidgets import (QApplication, QComboBox, QLabel, QMainWindow,
     QMenuBar, QPushButton, QSizePolicy, QStatusBar,
     QWidget)
 
@@ -34,21 +34,27 @@ class RemoveMovie(object):
         font.setBold(True)
         self.label.setFont(font)
         self.label.setAlignment(Qt.AlignCenter)
-        self.label_2 = QLabel(self.centralwidget)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(130, 240, 131, 41))
-        font1 = QFont()
-        font1.setPointSize(12)
-        self.label_2.setFont(font1)
-        self.name = QLineEdit(self.centralwidget)
-        self.name.setObjectName(u"name")
-        self.name.setGeometry(QRect(270, 250, 201, 31))
         self.confirm = QPushButton(self.centralwidget)
         self.confirm.setObjectName(u"confirm")
         self.confirm.setGeometry(QRect(550, 390, 101, 41))
         self.Back = QPushButton(self.centralwidget)
         self.Back.setObjectName(u"Back")
         self.Back.setGeometry(QRect(50, 390, 121, 41))
+        self.name = QComboBox(self.centralwidget)
+        self.name.setObjectName(u"name")
+        self.name.setGeometry(QRect(290, 230, 241, 28))
+        self.label_2 = QLabel(self.centralwidget)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setGeometry(QRect(120, 220, 141, 41))
+        font1 = QFont()
+        font1.setPointSize(14)
+        self.label_2.setFont(font1)
+        self.label_3 = QLabel(self.centralwidget)
+        self.label_3.setObjectName(u"label_3")
+        self.label_3.setGeometry(QRect(200, 390, 291, 41))
+        font2 = QFont()
+        font2.setPointSize(12)
+        self.label_3.setFont(font2)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -66,8 +72,9 @@ class RemoveMovie(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Remove Movie", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Movie Name:", None))
         self.confirm.setText(QCoreApplication.translate("MainWindow", u"Confirm", None))
         self.Back.setText(QCoreApplication.translate("MainWindow", u"Back To Home", None))
+        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Movie name:", None))
+        self.label_3.setText("")
     # retranslateUi
 
