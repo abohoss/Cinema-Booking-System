@@ -12,7 +12,7 @@ from UI_.ui_AddMovie import MovieAdd
 from UI_.ui_RemoveMovie import RemoveMovie
 from UI_.ui_AddShowTime import ShowAdd
 from UI_.ui_ReserveView import ReserveView
-from ui_RemoveShowTime import RemoveShowTime
+from UI_.ui_RemoveShowTime import RemoveShowTime
 from Employee import employee_login
 from Customer import customer_login , create_customer_account, ReserveTicket, Customer, validate_email
 from Movie import Movie,add_movie, list_movieNames, list_Halls, listMovieShowTimes,listMovieShowDates,listMovieShowHalls, getBookedSeats,delete_movie
@@ -27,7 +27,7 @@ class MainWindow(QMainWindow):
         self.ui.setupUi(self)
 
         # Establish database connection and save cursor
-        self.conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-T4EV4IC};Database={Cinema}')
+        self.conn = pyodbc.connect('Driver={SQL Server};Server={DESKTOP-Q2Q9TUS};Database={Cinema}')
         self.cursor = self.conn.cursor()
 
         self.email = None

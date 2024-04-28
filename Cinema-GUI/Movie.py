@@ -100,7 +100,7 @@ def getBookedSeats(cursor, movie_name, show_date, show_time, hall_num):
 # # listMovieShowTimes(cursor, 'The Avengers')
 # listMovieShowHalls(cursor, 'The Avengers')
 # listMovieShowDates(cursor, 'The Avengers', 1)
-listMovieShowTimes(cursor, 'The Avengers', 1, '2024-05-25')
+# listMovieShowTimes(cursor, 'The Avengers', 1, '2024-05-25')
 # getBookedSeats(cursor, 'The Avengers', '2024-05-25', '00:00:00', 4)
 # Close the connection
-conn.close()
+# conn.close()

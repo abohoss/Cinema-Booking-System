@@ -24,6 +24,8 @@
         "UI_/ui_userHome.py",
         "UI_/ui_userLogin.py",
         "UI/ReserveView.ui",
-        "UI_/ui_ReserveView.py"
+        "UI_/ui_ReserveView.py",
+        "UI/RemoveShowTime.ui",
+        "UI_/ui_RemoveShowTime.py"
     ]
 }
