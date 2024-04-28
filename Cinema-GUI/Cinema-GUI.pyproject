@@ -26,6 +26,8 @@
         "UI/ReserveView.ui",
         "UI_/ui_ReserveView.py",
         "UI/RemoveShowTime.ui",
-        "UI_/ui_RemoveShowTime.py"
+        "UI_/ui_RemoveShowTime.py",
+        "UI/customerShowMovies.ui",
+        "UI_/ui_customerShowMovies.py"
     ]
 }
