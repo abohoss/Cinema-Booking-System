@@ -134,16 +134,19 @@ BEGIN
 END;
 go
 CREATE PROCEDURE ListMovieShowTimes
-    @Name VARCHAR(100)
+    @Name VARCHAR(100),
+	@HallId INT,
+	@Showdate date
 AS
 BEGIN
-    SELECT CONVERT(VARCHAR(5), Time, 108) FROM ShowTime WHERE Movie_Name = @Name;
+    SELECT CONVERT(VARCHAR(5), Time, 108) FROM ShowTime WHERE Movie_Name = @Name and Hall_Number = @HallId  and Date = @Showdate;
 END;
 CREATE PROCEDURE ListMovieShowDates
-	@Name VARCHAR(100)
+	@Name VARCHAR(100),
+	@HallId int
 AS
 BEGIN
-    SELECT Date from ShowTime where Movie_Name = @Name       
+    SELECT Date from ShowTime where Movie_Name = @Name and Hall_Number = @HallId     
 END;
 go
 CREATE PROCEDURE ListMovieShowHalls
@@ -160,7 +163,6 @@ BEGIN
     SELECT Hall_Num from Hall       
 END;
 go
-exec ListHalls
 ------------------------------------------Showtime Procedures----------------------------------------------------------------
 CREATE PROCEDURE AddShowTime
   @Time TIME,
@@ -265,16 +267,34 @@ BEGIN
         AND Hall_no = @Hall_Id;
 END;
 
+CREATE PROCEDURE GetBookedSeats
+	@Movie_Name Varchar(100),
+    @Show_Date DATE,
+	@Show_Time TIME,
+    @Hall_Id INT
+AS
+BEGIN
+    SELECT Seat_No
+    FROM ReservedSeats
+    WHERE ShowTime = @Show_Time
+        AND ShowDate = @Show_Date
+        AND Hall_No = @Hall_Id;
+END;
+exec GetBookedSeats
+	@Movie_Name = 'The Avengers',
+	@Show_Date = '2024-05-25',
+	@Show_Time = '00:00:00',
+	@Hall_Id = 4
 -------------------------------------------------Reserve Test-----------------------------------------------
 
 EXEC dbo.ReserveTicket
-		@Show_Time = '20:00' ,
-        @Show_Date = '2024-05-01' ,
+		@Show_Time = '00:00' ,
+        @Show_Date = '2024-05-25' ,
         @Hall_Id = 1 ,
         @MovieName = 'The Avengers' ,
         @Customer_Email = 'Yehiasakr@gmail.com' ,
 		@PaymentType = 'Credit Card' ,
         @Reserveprice = 50 ,
         @Reservetype = 'Premium',
-		@Seats = '10,11'
+		@Seats = '18,20'
 

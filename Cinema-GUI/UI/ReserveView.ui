@@ -41,9 +41,9 @@
     <property name="geometry">
      <rect>
       <x>480</x>
-      <y>300</y>
-      <width>251</width>
-      <height>161</height>
+      <y>310</y>
+      <width>261</width>
+      <height>151</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
@@ -253,7 +253,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>170</y>
+      <y>290</y>
       <width>121</width>
       <height>31</height>
      </rect>
@@ -289,7 +289,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>290</y>
+      <y>170</y>
       <width>81</width>
       <height>41</height>
      </rect>
@@ -343,7 +343,7 @@
     <property name="geometry">
      <rect>
       <x>190</x>
-      <y>170</y>
+      <y>290</y>
       <width>131</width>
       <height>28</height>
      </rect>
@@ -363,10 +363,16 @@
     <property name="geometry">
      <rect>
       <x>190</x>
-      <y>300</y>
-      <width>81</width>
+      <y>180</y>
+      <width>181</width>
       <height>28</height>
      </rect>
+    </property>
+    <property name="currentText">
+     <string/>
+    </property>
+    <property name="placeholderText">
+     <string/>
     </property>
    </widget>
    <widget class="QComboBox" name="ptype">

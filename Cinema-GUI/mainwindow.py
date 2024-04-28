@@ -14,7 +14,7 @@ from UI_.ui_AddShowTime import ShowAdd
 from UI_.ui_ReserveView import ReserveView
 from Employee import employee_login
 from Customer import customer_login , create_customer_account, ReserveTicket, Customer, validate_email
-from Movie import Movie,add_movie, list_movieNames, list_Halls, listMovieShowTimes,listMovieShowDates,listMovieShowHalls
+from Movie import Movie,add_movie, list_movieNames, list_Halls, listMovieShowTimes,listMovieShowDates,listMovieShowHalls, getBookedSeats
 from Showtime import Showtime,add_showtime
 
 
@@ -73,34 +73,53 @@ class MainWindow(QMainWindow):
         self.ui = ReserveView()
         self.ui.setupUi(self)
         self.ui.backBtn.clicked.connect(self.showUserLoginWindow)
-        show_times = listMovieShowTimes(self.cursor,self.movieName)
-        self.ui.time.clear()  # Clear the combobox before populating it
-        for index, showtime in enumerate(show_times):
-            self.ui.time.addItem(showtime)
-            self.ui.time.setItemData(index, showtime)  # Set the data for each item
-
-        show_dates = listMovieShowDates(self.cursor,self.movieName)
-        self.ui.date.clear()  # Clear the combobox before populating it
-        for index, showdate in enumerate(show_dates):
-            self.ui.date.addItem(showdate)
-            self.ui.date.setItemData(index, showdate)  # Set the data for each item
 
         hall_numbers = listMovieShowHalls(self.cursor,self.movieName)
         self.ui.hallnum.clear()  # Clear the combobox before populating it
         for index, hall_number in enumerate(hall_numbers):
             self.ui.hallnum.addItem(str(hall_number))
             self.ui.hallnum.setItemData(index, int(hall_number))  # Set the data as int
+        self.updateShowDate()
+        self.updateShowTime()
+        self.ui.hallnum.currentIndexChanged.connect(self.updateShowDate)
+
+        self.ui.date.currentIndexChanged.connect(self.updateShowTime)
 
         payment_types = ['Credit Card','Fawry','Cash']
         self.ui.ptype.clear()
         for index, type in enumerate(payment_types):
             self.ui.ptype.addItem(type)
             self.ui.ptype.setItemData(index, type)  # Set the data for each item
+        if self.ui.hallnum.currentData() ==1 or self.ui.hallnum.currentData() ==2:
+            self.ui.reserveType.setText('Standard')
+        else:
+            self.ui.reserveType.setText('Standard')
+        print(self.ui.time.currentData())
+        print(self.ui.date.currentData())
+        print(self.ui.hallnum.currentData())
+        self.disableBookedSeats()
+        self.ui.time.currentIndexChanged.connect(self.disableBookedSeats)
+        self.ui.date.currentIndexChanged.connect(self.disableBookedSeats)
+        self.ui.hallnum.currentIndexChanged.connect(self.disableBookedSeats)
 
-        self.ui.reserveType.setText('Standard')
         self.ui.hallnum.currentIndexChanged.connect(self.updateReserveType)
         self.ui.confirmBook.clicked.connect(self.reserveSeats)
 
+    def updateShowTime(self):
+        print("Here")
+        show_times = listMovieShowTimes(self.cursor,self.movieName,self.ui.hallnum.currentData(),self.ui.date.currentData())
+        self.ui.time.clear()  # Clear the combobox before populating it
+        for index, showtime in enumerate(show_times):
+            self.ui.time.addItem(showtime)
+            self.ui.time.setItemData(index, showtime)  # Set the data for each item
+
+    def updateShowDate(self):
+        show_dates = listMovieShowDates(self.cursor,self.movieName,self.ui.hallnum.currentData())
+        self.ui.date.clear()  # Clear the combobox before populating it
+        for index, showdate in enumerate(show_dates):
+            self.ui.date.addItem(showdate)
+            self.ui.date.setItemData(index, showdate)  # Set the data for each item
+        self.updateShowTime()
 
     def updateReserveType(self, index):
         hall_id = self.ui.hallnum.currentData()
@@ -208,6 +227,25 @@ class MainWindow(QMainWindow):
         self.ui.label_6.setStyleSheet("color: green;")
         self.ui.label_6.setText("Showtime Added Successfully")
 
+
+    def disableBookedSeats(self):
+        ShowTime = self.ui.time.currentData()
+        ShowDate = self.ui.date.currentData()
+        HallId = self.ui.hallnum.currentData()
+        print(self.ui.time.currentData())
+        print(self.ui.date.currentData())
+        print(self.ui.hallnum.currentData())
+        booked_Seats = getBookedSeats(self.cursor, self.movieName, ShowDate, ShowTime, HallId)
+        print(booked_Seats)
+        if not booked_Seats:
+            return
+        for i in booked_Seats:
+            seat_button = getattr(self.ui, f"seat{i}")
+            seat_button.setEnabled(False)
+
+
+
+
     def reserveSeats(self):
         ShowTime = self.ui.time.currentData()
         ShowDate = self.ui.date.currentData()
@@ -219,25 +257,25 @@ class MainWindow(QMainWindow):
             ReserveType = 'IMAX'
 
         Seats_List = []
-
         for i in range(1, 21):
             seat_button = getattr(self.ui, f"seat{i}")
             if seat_button.isChecked():
                 Seats_List.append(str(i))
+
+        if not Seats_List:
+            self.ui.oLabel.setStyleSheet("color: red;")
+            self.ui.oLabel.setText("Please Select a Seat")
+            return
                 
-        # seats = ", ".join(Seats_List)
-        # print(self.email)
-        # print(ShowTime)
-        # print(ShowDate)
-        # print(HallId)
-        # print(self.movieName)
-        # print(Seats_List)
-        # print(ReserveType)
-        # print(paymentType)
         try:
             ReserveTicket(self.email,ShowTime,ShowDate,HallId,self.movieName,Seats_List,ReserveType,paymentType,self.cursor)
             self.ui.oLabel.setStyleSheet("color: green;")
             self.ui.oLabel.setText("Reservation Created Successfully")
+            booked_Seats = getBookedSeats(self.cursor,self.movieName,ShowDate,ShowTime,HallId)
+            # print(booked_Seats)
+            for i in booked_Seats:
+                seat_button = getattr(self.ui, f"seat{i}")
+                seat_button.setEnabled(False)
         except:
                 self.ui.oLabel.setStyleSheet("color: red;")
                 self.ui.oLabel.setText("Seats Already Taken")
