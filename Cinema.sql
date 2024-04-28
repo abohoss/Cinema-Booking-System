@@ -152,6 +152,3 @@ VALUES
   (16,'Premium', 4, 0),(17,'Premium', 4, 0),(18,'Premium', 4, 0),(19,'Premium', 4, 0),(20,'Premium', 4, 0)
 
 
-    
-
-

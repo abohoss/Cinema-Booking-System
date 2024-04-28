@@ -258,23 +258,6 @@ AS
 BEGIN
     DECLARE @TransactionId INT;
 
-    -- Check if seat is already booked
-    IF EXISTS (
-        SELECT 1
-        FROM Seat
-        WHERE Seat_ID IN (
-                SELECT CAST(Value AS INT)
-                FROM STRING_SPLIT(@Seats, ',')
-            )
-            AND Hall_no = @Hall_Id
-            AND Booked = 1
-    )
-    BEGIN
-        -- Seat is already booked, return an error or take appropriate action
-        RAISERROR('Selected seats are already booked. Reservation cannot be made.', 16, 1);
-        RETURN;
-    END;
-
     -- Insert into Transaction table
     INSERT INTO [Transaction] (Price, Transaction_Date, PaymentType, Customer_Email)
     VALUES (@ReservePrice, GETDATE(), @PaymentType, @Customer_Email);
@@ -310,14 +293,6 @@ BEGIN
     SELECT @TransactionId, @Show_Time, @Show_Date, @Hall_Id, @MovieName, @Customer_Email, Seat_No, @Hall_Id
     FROM @SeatList;
 
-    -- Update the Seat table to mark the seats as booked
-    UPDATE Seat
-    SET Booked = 1
-    WHERE Seat_ID IN (
-            SELECT Seat_No
-            FROM @SeatList
-        )
-        AND Hall_no = @Hall_Id;
 END;
 
 CREATE PROCEDURE GetBookedSeats
