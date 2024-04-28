@@ -1,7 +1,7 @@
 import sys
 import pyodbc
-from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QGraphicsOpacityEffect
-from PySide6.QtGui import QPixmap, QFont
+from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QLabel, QPushButton
+from PySide6.QtGui import QPixmap, QFont, QIcon
 from PySide6.QtCore import Qt
 from ui_form import Ui_MainWindow
 from ui_empLogin import EmpLogin
@@ -50,6 +50,9 @@ class MainWindow(QMainWindow):
         self.ui.backBtn.clicked.connect(self.showUserLoginWindow)  # Connect backBtn to showUserLoginWindow
         self.ui.createAccBtn.clicked.connect(self.performCreateAccount)
 
+    def showReserveStub(self, movie_name):
+        print(movie_name)
+
     def showCustomerShowMovies(self):
         self.ui = CustomerShowMovies()
         self.ui.setupUi(self)
@@ -74,20 +77,19 @@ class MainWindow(QMainWindow):
             name.setWordWrap(True)
             info_text_layout.addWidget(name)
             genre = QLabel(movie.Genre)
-            self.opacity_effect = QGraphicsOpacityEffect()
-            self.opacity_effect.setOpacity(0.3)
-            genre.setGraphicsEffect(self.opacity_effect)
-            self.ui.scrollArea.update()
             genre.setWordWrap(True)
             info_text_layout.addWidget(genre)
             cast = QLabel(movie.Actors)
             cast.setFont(QFont(str(QFont.Helvetica), 9, int(QFont.Thin)))
             cast.setWordWrap(True)
             info_text_layout.addWidget(cast)
-
             info_text_layout.addStretch()
-            info_text_layout_widget.update()
             info_layout.addWidget(info_text_layout_widget)
+
+            reserve_btn = QPushButton(QIcon("images/book_online_FILL0_wght200_GRAD0_opsz20.png"), "Book Tickets")
+            reserve_btn.clicked.connect(lambda checked, movie_name = movie.Name: self.showReserveStub(movie_name))
+            info_layout.addWidget(reserve_btn)
+
             info_layout.addStretch()
             movie_card.addWidget(info_layout_widget)
             # Movie descritpion
