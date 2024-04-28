@@ -153,3 +153,29 @@ VALUES
   (6,'Regular', 4, 0),(7,'Regular', 4, 0),(8,'Regular', 4, 0),(09,'Regular', 4, 0),(10,'Regular', 4, 0),
   (11,'Premium', 4, 0),(12,'Premium', 4, 0),(13,'Premium', 4, 0),(14,'Premium', 4, 0),(15,'Premium', 4, 0),
   (16,'Premium', 4, 0),(17,'Premium', 4, 0),(18,'Premium', 4, 0),(19,'Premium', 4, 0),(20,'Premium', 4, 0)
+
+
+ Exec CreateEmployeeAccount
+	@EmpId = 2,
+	@FirstName = 'Ahmed',
+	@LastName = 'Hossam',
+	@Salary = 5000,
+	@Role = 'Manager',
+	@StreetName = '7th District',
+	@BuildingNumber = 10,
+	@ApartmentNumber = 1,
+	@Password = '1234'
+
+ Exec CreateEmployeeAccount
+	@EmpId= 3,
+    @FirstName= 'Hana',
+    @LastName= 'Mohamed',
+    @Salary= 6000,
+    @Role= 'Supervisor',
+    @StreetName='8th Avenue',
+    @BuildingNumber= 15,
+    @ApartmentNumber= 2,
+    @Password = '4567'
+
+insert into Manage_Halls (Hall_Number,Manager_Id)
+values (1,1),(2,2),(3,3)

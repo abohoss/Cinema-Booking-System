@@ -41,95 +41,11 @@ class ReserveView(object):
         self.gridLayout = QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
-        self.seat17 = QPushButton(self.gridLayoutWidget)
-        self.seat17.setObjectName(u"seat17")
-        self.seat17.setCheckable(True)
+        self.seat8 = QPushButton(self.gridLayoutWidget)
+        self.seat8.setObjectName(u"seat8")
+        self.seat8.setCheckable(True)
 
-        self.gridLayout.addWidget(self.seat17, 4, 1, 1, 1)
-
-        self.seat3 = QPushButton(self.gridLayoutWidget)
-        self.seat3.setObjectName(u"seat3")
-        self.seat3.setCheckable(True)
-
-        self.gridLayout.addWidget(self.seat3, 0, 2, 1, 1)
-
-        self.seat7 = QPushButton(self.gridLayoutWidget)
-        self.seat7.setObjectName(u"seat7")
-        self.seat7.setCheckable(True)
-
-        self.gridLayout.addWidget(self.seat7, 1, 1, 1, 1)
-
-        self.seat20 = QPushButton(self.gridLayoutWidget)
-        self.seat20.setObjectName(u"seat20")
-        self.seat20.setCheckable(True)
-
-        self.gridLayout.addWidget(self.seat20, 4, 4, 1, 1)
-
-        self.seat6 = QPushButton(self.gridLayoutWidget)
-        self.seat6.setObjectName(u"seat6")
-        self.seat6.setCheckable(True)
-
-        self.gridLayout.addWidget(self.seat6, 1, 0, 1, 1)
-
-        self.seat10 = QPushButton(self.gridLayoutWidget)
-        self.seat10.setObjectName(u"seat10")
-        self.seat10.setCheckable(True)
-
-        self.gridLayout.addWidget(self.seat10, 1, 4, 1, 1)
-
-        self.seat4 = QPushButton(self.gridLayoutWidget)
-        self.seat4.setObjectName(u"seat4")
-        self.seat4.setCheckable(True)
-
-        self.gridLayout.addWidget(self.seat4, 0, 3, 1, 1)
-
-        self.seat19 = QPushButton(self.gridLayoutWidget)
-        self.seat19.setObjectName(u"seat19")
-        self.seat19.setCheckable(True)
-
-        self.gridLayout.addWidget(self.seat19, 4, 3, 1, 1)
-
-        self.seat16 = QPushButton(self.gridLayoutWidget)
-        self.seat16.setObjectName(u"seat16")
-        self.seat16.setCheckable(True)
-
-        self.gridLayout.addWidget(self.seat16, 4, 0, 1, 1)
-
-        self.seat2 = QPushButton(self.gridLayoutWidget)
-        self.seat2.setObjectName(u"seat2")
-        self.seat2.setCheckable(True)
-
-        self.gridLayout.addWidget(self.seat2, 0, 1, 1, 1)
-
-        self.seat11 = QPushButton(self.gridLayoutWidget)
-        self.seat11.setObjectName(u"seat11")
-        self.seat11.setCheckable(True)
-
-        self.gridLayout.addWidget(self.seat11, 2, 0, 1, 1)
-
-        self.seat14 = QPushButton(self.gridLayoutWidget)
-        self.seat14.setObjectName(u"seat14")
-        self.seat14.setCheckable(True)
-
-        self.gridLayout.addWidget(self.seat14, 2, 3, 1, 1)
-
-        self.seat12 = QPushButton(self.gridLayoutWidget)
-        self.seat12.setObjectName(u"seat12")
-        self.seat12.setCheckable(True)
-
-        self.gridLayout.addWidget(self.seat12, 2, 1, 1, 1)
-
-        self.seat13 = QPushButton(self.gridLayoutWidget)
-        self.seat13.setObjectName(u"seat13")
-        self.seat13.setCheckable(True)
-
-        self.gridLayout.addWidget(self.seat13, 2, 2, 1, 1)
-
-        self.seat9 = QPushButton(self.gridLayoutWidget)
-        self.seat9.setObjectName(u"seat9")
-        self.seat9.setCheckable(True)
-
-        self.gridLayout.addWidget(self.seat9, 1, 3, 1, 1)
+        self.gridLayout.addWidget(self.seat8, 1, 2, 1, 1)
 
         self.seat15 = QPushButton(self.gridLayoutWidget)
         self.seat15.setObjectName(u"seat15")
@@ -137,17 +53,17 @@ class ReserveView(object):
 
         self.gridLayout.addWidget(self.seat15, 2, 4, 1, 1)
 
-        self.seat1 = QPushButton(self.gridLayoutWidget)
-        self.seat1.setObjectName(u"seat1")
-        self.seat1.setCheckable(True)
+        self.seat17 = QPushButton(self.gridLayoutWidget)
+        self.seat17.setObjectName(u"seat17")
+        self.seat17.setCheckable(True)
 
-        self.gridLayout.addWidget(self.seat1, 0, 0, 1, 1)
+        self.gridLayout.addWidget(self.seat17, 4, 1, 1, 1)
 
-        self.seat5 = QPushButton(self.gridLayoutWidget)
-        self.seat5.setObjectName(u"seat5")
-        self.seat5.setCheckable(True)
+        self.seat4 = QPushButton(self.gridLayoutWidget)
+        self.seat4.setObjectName(u"seat4")
+        self.seat4.setCheckable(True)
 
-        self.gridLayout.addWidget(self.seat5, 0, 4, 1, 1)
+        self.gridLayout.addWidget(self.seat4, 0, 3, 1, 1)
 
         self.seat18 = QPushButton(self.gridLayoutWidget)
         self.seat18.setObjectName(u"seat18")
@@ -155,11 +71,95 @@ class ReserveView(object):
 
         self.gridLayout.addWidget(self.seat18, 4, 2, 1, 1)
 
-        self.seat8 = QPushButton(self.gridLayoutWidget)
-        self.seat8.setObjectName(u"seat8")
-        self.seat8.setCheckable(True)
+        self.seat9 = QPushButton(self.gridLayoutWidget)
+        self.seat9.setObjectName(u"seat9")
+        self.seat9.setCheckable(True)
 
-        self.gridLayout.addWidget(self.seat8, 1, 2, 1, 1)
+        self.gridLayout.addWidget(self.seat9, 1, 3, 1, 1)
+
+        self.seat10 = QPushButton(self.gridLayoutWidget)
+        self.seat10.setObjectName(u"seat10")
+        self.seat10.setCheckable(True)
+
+        self.gridLayout.addWidget(self.seat10, 1, 4, 1, 1)
+
+        self.seat20 = QPushButton(self.gridLayoutWidget)
+        self.seat20.setObjectName(u"seat20")
+        self.seat20.setCheckable(True)
+
+        self.gridLayout.addWidget(self.seat20, 4, 4, 1, 1)
+
+        self.seat13 = QPushButton(self.gridLayoutWidget)
+        self.seat13.setObjectName(u"seat13")
+        self.seat13.setCheckable(True)
+
+        self.gridLayout.addWidget(self.seat13, 2, 2, 1, 1)
+
+        self.seat5 = QPushButton(self.gridLayoutWidget)
+        self.seat5.setObjectName(u"seat5")
+        self.seat5.setCheckable(True)
+
+        self.gridLayout.addWidget(self.seat5, 0, 4, 1, 1)
+
+        self.seat1 = QPushButton(self.gridLayoutWidget)
+        self.seat1.setObjectName(u"seat1")
+        self.seat1.setCheckable(True)
+
+        self.gridLayout.addWidget(self.seat1, 0, 0, 1, 1)
+
+        self.seat3 = QPushButton(self.gridLayoutWidget)
+        self.seat3.setObjectName(u"seat3")
+        self.seat3.setCheckable(True)
+
+        self.gridLayout.addWidget(self.seat3, 0, 2, 1, 1)
+
+        self.seat16 = QPushButton(self.gridLayoutWidget)
+        self.seat16.setObjectName(u"seat16")
+        self.seat16.setCheckable(True)
+
+        self.gridLayout.addWidget(self.seat16, 4, 0, 1, 1)
+
+        self.seat14 = QPushButton(self.gridLayoutWidget)
+        self.seat14.setObjectName(u"seat14")
+        self.seat14.setCheckable(True)
+
+        self.gridLayout.addWidget(self.seat14, 2, 3, 1, 1)
+
+        self.seat19 = QPushButton(self.gridLayoutWidget)
+        self.seat19.setObjectName(u"seat19")
+        self.seat19.setCheckable(True)
+
+        self.gridLayout.addWidget(self.seat19, 4, 3, 1, 1)
+
+        self.seat7 = QPushButton(self.gridLayoutWidget)
+        self.seat7.setObjectName(u"seat7")
+        self.seat7.setCheckable(True)
+
+        self.gridLayout.addWidget(self.seat7, 1, 1, 1, 1)
+
+        self.seat6 = QPushButton(self.gridLayoutWidget)
+        self.seat6.setObjectName(u"seat6")
+        self.seat6.setCheckable(True)
+
+        self.gridLayout.addWidget(self.seat6, 1, 0, 1, 1)
+
+        self.seat2 = QPushButton(self.gridLayoutWidget)
+        self.seat2.setObjectName(u"seat2")
+        self.seat2.setCheckable(True)
+
+        self.gridLayout.addWidget(self.seat2, 0, 1, 1, 1)
+
+        self.seat12 = QPushButton(self.gridLayoutWidget)
+        self.seat12.setObjectName(u"seat12")
+        self.seat12.setCheckable(True)
+
+        self.gridLayout.addWidget(self.seat12, 2, 1, 1, 1)
+
+        self.seat11 = QPushButton(self.gridLayoutWidget)
+        self.seat11.setObjectName(u"seat11")
+        self.seat11.setCheckable(True)
+
+        self.gridLayout.addWidget(self.seat11, 2, 0, 1, 1)
 
         self.label_2 = QLabel(self.centralwidget)
         self.label_2.setObjectName(u"label_2")
@@ -211,7 +211,7 @@ class ReserveView(object):
         self.confirmBook.setFont(font2)
         self.oLabel = QLabel(self.centralwidget)
         self.oLabel.setObjectName(u"oLabel")
-        self.oLabel.setGeometry(QRect(30, 480, 411, 51))
+        self.oLabel.setGeometry(QRect(10, 530, 411, 51))
         self.oLabel.setFont(font1)
         self.oLabel.setAlignment(Qt.AlignCenter)
         self.label_7 = QLabel(self.centralwidget)
@@ -233,26 +233,26 @@ class ReserveView(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Book Seats", None))
-        self.seat17.setText(QCoreApplication.translate("MainWindow", u"17", None))
-        self.seat3.setText(QCoreApplication.translate("MainWindow", u"3", None))
-        self.seat7.setText(QCoreApplication.translate("MainWindow", u"7", None))
-        self.seat20.setText(QCoreApplication.translate("MainWindow", u"20", None))
-        self.seat6.setText(QCoreApplication.translate("MainWindow", u"6", None))
-        self.seat10.setText(QCoreApplication.translate("MainWindow", u"10", None))
-        self.seat4.setText(QCoreApplication.translate("MainWindow", u"4", None))
-        self.seat19.setText(QCoreApplication.translate("MainWindow", u"19", None))
-        self.seat16.setText(QCoreApplication.translate("MainWindow", u"16", None))
-        self.seat2.setText(QCoreApplication.translate("MainWindow", u"2", None))
-        self.seat11.setText(QCoreApplication.translate("MainWindow", u"11", None))
-        self.seat14.setText(QCoreApplication.translate("MainWindow", u"14", None))
-        self.seat12.setText(QCoreApplication.translate("MainWindow", u"12", None))
-        self.seat13.setText(QCoreApplication.translate("MainWindow", u"13", None))
-        self.seat9.setText(QCoreApplication.translate("MainWindow", u"9", None))
-        self.seat15.setText(QCoreApplication.translate("MainWindow", u"15", None))
-        self.seat1.setText(QCoreApplication.translate("MainWindow", u"1", None))
-        self.seat5.setText(QCoreApplication.translate("MainWindow", u"5", None))
-        self.seat18.setText(QCoreApplication.translate("MainWindow", u"18", None))
         self.seat8.setText(QCoreApplication.translate("MainWindow", u"8", None))
+        self.seat15.setText(QCoreApplication.translate("MainWindow", u"15", None))
+        self.seat17.setText(QCoreApplication.translate("MainWindow", u"17", None))
+        self.seat4.setText(QCoreApplication.translate("MainWindow", u"4", None))
+        self.seat18.setText(QCoreApplication.translate("MainWindow", u"18", None))
+        self.seat9.setText(QCoreApplication.translate("MainWindow", u"9", None))
+        self.seat10.setText(QCoreApplication.translate("MainWindow", u"10", None))
+        self.seat20.setText(QCoreApplication.translate("MainWindow", u"20", None))
+        self.seat13.setText(QCoreApplication.translate("MainWindow", u"13", None))
+        self.seat5.setText(QCoreApplication.translate("MainWindow", u"5", None))
+        self.seat1.setText(QCoreApplication.translate("MainWindow", u"1", None))
+        self.seat3.setText(QCoreApplication.translate("MainWindow", u"3", None))
+        self.seat16.setText(QCoreApplication.translate("MainWindow", u"16", None))
+        self.seat14.setText(QCoreApplication.translate("MainWindow", u"14", None))
+        self.seat19.setText(QCoreApplication.translate("MainWindow", u"19", None))
+        self.seat7.setText(QCoreApplication.translate("MainWindow", u"7", None))
+        self.seat6.setText(QCoreApplication.translate("MainWindow", u"6", None))
+        self.seat2.setText(QCoreApplication.translate("MainWindow", u"2", None))
+        self.seat12.setText(QCoreApplication.translate("MainWindow", u"12", None))
+        self.seat11.setText(QCoreApplication.translate("MainWindow", u"11", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Show Time", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Show Date", None))
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Hall Id", None))

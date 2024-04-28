@@ -16,8 +16,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QLabel, QLineEdit, QMainWindow,
-    QMenuBar, QPushButton, QSizePolicy, QStatusBar,
-    QTextEdit, QWidget)
+    QPushButton, QSizePolicy, QStatusBar, QTextEdit,
+    QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -28,7 +28,7 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.Add = QPushButton(self.centralwidget)
         self.Add.setObjectName(u"Add")
-        self.Add.setGeometry(QRect(600, 480, 161, 41))
+        self.Add.setGeometry(QRect(610, 510, 161, 41))
         font = QFont()
         font.setPointSize(12)
         self.Add.setFont(font)
@@ -36,7 +36,7 @@ class Ui_MainWindow(object):
         self.Add.setChecked(False)
         self.Back = QPushButton(self.centralwidget)
         self.Back.setObjectName(u"Back")
-        self.Back.setGeometry(QRect(400, 480, 161, 41))
+        self.Back.setGeometry(QRect(400, 510, 161, 41))
         self.Back.setFont(font)
         self.cast = QLineEdit(self.centralwidget)
         self.cast.setObjectName(u"cast")
@@ -76,7 +76,7 @@ class Ui_MainWindow(object):
         self.name.setGeometry(QRect(180, 120, 191, 28))
         self.label_6 = QLabel(self.centralwidget)
         self.label_6.setObjectName(u"label_6")
-        self.label_6.setGeometry(QRect(10, 480, 391, 41))
+        self.label_6.setGeometry(QRect(10, 510, 391, 41))
         self.label_6.setFont(font1)
         self.label_6.setAlignment(Qt.AlignCenter)
         self.label_7 = QLabel(self.centralwidget)
@@ -89,11 +89,14 @@ class Ui_MainWindow(object):
         self.description = QTextEdit(self.centralwidget)
         self.description.setObjectName(u"description")
         self.description.setGeometry(QRect(220, 260, 431, 85))
+        self.label_9 = QLabel(self.centralwidget)
+        self.label_9.setObjectName(u"label_9")
+        self.label_9.setGeometry(QRect(70, 450, 121, 31))
+        self.label_9.setFont(font1)
+        self.imageUrl = QLineEdit(self.centralwidget)
+        self.imageUrl.setObjectName(u"imageUrl")
+        self.imageUrl.setGeometry(QRect(190, 450, 411, 28))
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QMenuBar(MainWindow)
-        self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 800, 25))
-        MainWindow.setMenuBar(self.menubar)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
         MainWindow.setStatusBar(self.statusbar)
@@ -114,5 +117,6 @@ class Ui_MainWindow(object):
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"Cast:", None))
         self.label_6.setText("")
         self.label_7.setText(QCoreApplication.translate("MainWindow", u"Note : Cast must be Comma Separated ( Ahmed, Yehia )", None))
+        self.label_9.setText(QCoreApplication.translate("MainWindow", u"Image URL:", None))
     # retranslateUi
 

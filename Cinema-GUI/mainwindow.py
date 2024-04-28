@@ -95,6 +95,7 @@ class MainWindow(QMainWindow):
         if not comm:
             self.ui.label_6.setStyleSheet("color: red;")
             self.ui.label_6.setText("Comment Field is Empty")
+            return
         try:
             add_rating(Name, self.email ,rate, comm, self.cursor)
             self.ui.label_6.setStyleSheet("color: green;")
@@ -585,7 +586,7 @@ class MainWindow(QMainWindow):
             create_customer_account(customer,self.cursor)
             self.ui.oLabel.setStyleSheet("color: green;")
             self.ui.oLabel.setText("Account Created Successfully")
-            self.email = customer.email
+            self.email = customer.Email
             self.showCustomerShowMovies()
         except:
             self.ui.oLabel.setStyleSheet("color: red;")

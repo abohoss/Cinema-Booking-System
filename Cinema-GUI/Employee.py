@@ -31,8 +31,8 @@ def employee_login(id, password,cursor):
 # employee = Employee(Fname='John', Lname='Doe', Emp_id=1, Salary=5000.00, Role='Manager',
 #                     Street_Name='123 Main St', Building_no=1, Apartment_no=2,password='123')
 
-# # create_employee_account(employee)
-# login_result = employee_login(1, '123')
+# create_employee_account(employee,cursor)
+# login_result = employee_login(1, '123',cursor)
 # print("Login Successful!" if login_result else "Login Failed!")
 
 

@@ -41,9 +41,9 @@
     <property name="geometry">
      <rect>
       <x>490</x>
-      <y>320</y>
-      <width>261</width>
-      <height>131</height>
+      <y>310</y>
+      <width>251</width>
+      <height>141</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="gridLayout">
@@ -437,8 +437,8 @@
    <widget class="QLabel" name="oLabel">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>480</y>
+      <x>10</x>
+      <y>530</y>
       <width>411</width>
       <height>51</height>
      </rect>
