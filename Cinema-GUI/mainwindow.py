@@ -11,9 +11,10 @@ from UI_.ui_empHome import EmpHome
 from UI_.ui_AddMovie import MovieAdd
 from UI_.ui_RemoveMovie import RemoveMovie
 from UI_.ui_AddShowTime import ShowAdd
+from UI_.ui_ReserveView import ReserveView
 from Employee import employee_login
-from Customer import customer_login , create_customer_account, Customer, validate_email
-from Movie import Movie,add_movie, list_movieNames, list_Halls
+from Customer import customer_login , create_customer_account, ReserveTicket, Customer, validate_email
+from Movie import Movie,add_movie, list_movieNames, list_Halls, listMovieShowTimes,listMovieShowDates,listMovieShowHalls
 from Showtime import Showtime,add_showtime
 
 
@@ -30,6 +31,9 @@ class MainWindow(QMainWindow):
 
         self.email = None
         self.emp_id = None
+        self.movieName = "The Avengers"
+
+
 
         # Connect button clicks to appropriate slots
         self.ui.empBtn.clicked.connect(self.showEmpLoginWindow)
@@ -64,6 +68,47 @@ class MainWindow(QMainWindow):
         self.ui.removeMovie.clicked.connect(self.showRemoveMovie)
         self.ui.AddShow.clicked.connect(self.showAddShowTime)
         # self.ui.removeShow.clicked.connect(self.showRemoveShowTime)
+
+    def showReserve(self):
+        self.ui = ReserveView()
+        self.ui.setupUi(self)
+        self.ui.backBtn.clicked.connect(self.showUserLoginWindow)
+        show_times = listMovieShowTimes(self.cursor,self.movieName)
+        self.ui.time.clear()  # Clear the combobox before populating it
+        for index, showtime in enumerate(show_times):
+            self.ui.time.addItem(showtime)
+            self.ui.time.setItemData(index, showtime)  # Set the data for each item
+
+        show_dates = listMovieShowDates(self.cursor,self.movieName)
+        self.ui.date.clear()  # Clear the combobox before populating it
+        for index, showdate in enumerate(show_dates):
+            self.ui.date.addItem(showdate)
+            self.ui.date.setItemData(index, showdate)  # Set the data for each item
+
+        hall_numbers = listMovieShowHalls(self.cursor,self.movieName)
+        self.ui.hallnum.clear()  # Clear the combobox before populating it
+        for index, hall_number in enumerate(hall_numbers):
+            self.ui.hallnum.addItem(str(hall_number))
+            self.ui.hallnum.setItemData(index, int(hall_number))  # Set the data as int
+
+        payment_types = ['Credit Card','Fawry','Cash']
+        self.ui.ptype.clear()
+        for index, type in enumerate(payment_types):
+            self.ui.ptype.addItem(type)
+            self.ui.ptype.setItemData(index, type)  # Set the data for each item
+
+        self.ui.reserveType.setText('Standard')
+        self.ui.hallnum.currentIndexChanged.connect(self.updateReserveType)
+        self.ui.confirmBook.clicked.connect(self.reserveSeats)
+
+
+    def updateReserveType(self, index):
+        hall_id = self.ui.hallnum.currentData()
+        if hall_id == 1 or hall_id == 2:
+            reserve_type = 'Standard'
+        else:
+            reserve_type = 'IMAX'
+        self.ui.reserveType.setText(reserve_type)
 
     def showAddMovie(self):
         self.ui=MovieAdd()
@@ -163,6 +208,45 @@ class MainWindow(QMainWindow):
         self.ui.label_6.setStyleSheet("color: green;")
         self.ui.label_6.setText("Showtime Added Successfully")
 
+    def reserveSeats(self):
+        ShowTime = self.ui.time.currentData()
+        ShowDate = self.ui.date.currentData()
+        HallId = self.ui.hallnum.currentData()
+        paymentType = self.ui.ptype.currentData()
+        if(HallId == 1 or HallId ==2):
+            ReserveType = 'Standard'
+        else:
+            ReserveType = 'IMAX'
+
+        Seats_List = []
+
+        for i in range(1, 21):
+            seat_button = getattr(self.ui, f"seat{i}")
+            if seat_button.isChecked():
+                Seats_List.append(str(i))
+                
+        # seats = ", ".join(Seats_List)
+        # print(self.email)
+        # print(ShowTime)
+        # print(ShowDate)
+        # print(HallId)
+        # print(self.movieName)
+        # print(Seats_List)
+        # print(ReserveType)
+        # print(paymentType)
+        try:
+            ReserveTicket(self.email,ShowTime,ShowDate,HallId,self.movieName,Seats_List,ReserveType,paymentType,self.cursor)
+            self.ui.oLabel.setStyleSheet("color: green;")
+            self.ui.oLabel.setText("Reservation Created Successfully")
+        except:
+                self.ui.oLabel.setStyleSheet("color: red;")
+                self.ui.oLabel.setText("Seats Already Taken")
+
+
+
+
+
+
 
 
     def performEmpLogin(self):
@@ -207,8 +291,10 @@ class MainWindow(QMainWindow):
         if customer_login(email, password, self.cursor):
             self.email = email
             print("Success")
+            self.showReserve()
         else:
-            print("No Customer with this Email")  # Error Case
+            self.ui.oLabel.setStyleSheet("color: red;")
+            self.ui.oLabel.setText("No User with this Email")
 
     def performCreateAccount(self):
         firstName = self.ui.fName.text()
@@ -265,11 +351,15 @@ class MainWindow(QMainWindow):
             self.ui.oLabel.setStyleSheet("color: red;")
             self.ui.oLabel.setText("Password field is empty")
             return
+        try:
+            customer = Customer(firstName,lastName,age,gender,phoneNumber,email,password)
+            create_customer_account(customer,self.cursor)
+            self.ui.oLabel.setStyleSheet("color: green;")
+            self.ui.oLabel.setText("Account Created Successfully")
+        except:
+            self.ui.oLabel.setStyleSheet("color: red;")
+            self.ui.oLabel.setText("Email Already Exists")
 
-        customer = Customer(firstName,lastName,age,gender,phoneNumber,email,password)
-        create_customer_account(customer,self.cursor)
-        self.ui.oLabel.setStyleSheet("color: green;")
-        self.ui.oLabel.setText("Account Created Successfully")
     def closeEvent(self, event):
         # Close the database connection when the MainWindow is closed
         self.cursor.close()

@@ -34,7 +34,7 @@ def customer_login(email, password,cursor):
     return count == 1
 #-------------------------------------------------------------------------------------------------
 
-def ReserveTicket(customer, time, date, hallid, MovieName, seats, reservetype, paymenttype,cursor):
+def ReserveTicket(email, time, date, hallid, MovieName, seats, reservetype, paymenttype,cursor):
         cursor.execute("SELECT Screen_type FROM Hall WHERE Hall_Num = ?", hallid)
         screen_type = cursor.fetchone()[0]
         price = 0
@@ -46,7 +46,7 @@ def ReserveTicket(customer, time, date, hallid, MovieName, seats, reservetype, p
 
         # Execute the SQL procedure
         cursor.execute("EXEC ReserveTicket ?, ?, ?, ?, ?, ?, ?, ?, ?", time, date, hallid, MovieName,
-                       customer.Email, paymenttype, price, reservetype, seat_str)
+                       email, paymenttype, price, reservetype, seat_str)
 
         # Commit the transaction
         cursor.commit()
@@ -62,12 +62,12 @@ def ReserveTicket(customer, time, date, hallid, MovieName, seats, reservetype, p
 # customer = Customer(firstName='Mark', lastName='Salah', Age=19, Gender='Male',
 #                     phoneNumber='01110101010', Email='Mark.Saleh@gmail.com', password='145')
 
-# create_customer_account(customer)
+# # create_customer_account(customer)
 
-# login_result = customer_login('Mark.Saleh@gmail.com', '145')
-# print("Login Successful!" if login_result else "Login Failed!")
+# # login_result = customer_login('Mark.Saleh@gmail.com', '145')
+# # print("Login Successful!" if login_result else "Login Failed!")
 
-# ReserveTicket(customer,'20:00','2024-05-01',1,'The Avengers',[1,2,3],'Premium','Credit Card')
+# ReserveTicket(customer.Email,'20:00','2024-05-01',1,'The Avengers',[4],'Premium','Credit Card',cursor)
 
-# # Close the connection
+# # # Close the connection
 # conn.close()

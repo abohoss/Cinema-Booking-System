@@ -133,24 +133,26 @@ BEGIN
     SELECT Name from Movie       
 END;
 go
-
-CREATE PROCEDURE DeleteMovie
-    @name VARCHAR(100)
+CREATE PROCEDURE ListMovieShowTimes
+    @Name VARCHAR(100)
 AS
 BEGIN
-    DECLARE movieCount INT;
-
-    -- Check if the movie exists
-    SELECT COUNT(*) INTO movieCount FROM Movie WHERE Name = @name;
-
-    IF movieCount > 0 THEN
-        -- Delete the movie
-        DELETE FROM Movie WHERE Name = @name;
-        SELECT CONCAT('Movie ', @name, ' deleted successfully.') AS Message;
-    ELSE
-        SELECT 'Movie not found' AS Message;
-    END IF;
-END
+    SELECT CONVERT(VARCHAR(5), Time, 108) FROM ShowTime WHERE Movie_Name = @Name;
+END;
+CREATE PROCEDURE ListMovieShowDates
+	@Name VARCHAR(100)
+AS
+BEGIN
+    SELECT Date from ShowTime where Movie_Name = @Name       
+END;
+go
+CREATE PROCEDURE ListMovieShowHalls
+	@Name VARCHAR(100)
+AS
+BEGIN
+    SELECT Hall_Number from ShowTime where Movie_Name = @Name       
+END;
+go
 
 CREATE PROCEDURE ListHalls
 AS
@@ -274,5 +276,5 @@ EXEC dbo.ReserveTicket
 		@PaymentType = 'Credit Card' ,
         @Reserveprice = 50 ,
         @Reservetype = 'Premium',
-		@Seats = '1,2,3'
+		@Seats = '10,11'
 

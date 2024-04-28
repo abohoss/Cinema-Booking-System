@@ -32,6 +32,8 @@ class MovieAdd(object):
         font = QFont()
         font.setPointSize(12)
         self.Add.setFont(font)
+        self.Add.setCheckable(False)
+        self.Add.setChecked(False)
         self.Back = QPushButton(self.centralwidget)
         self.Back.setObjectName(u"Back")
         self.Back.setGeometry(QRect(400, 480, 161, 41))

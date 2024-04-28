@@ -150,6 +150,7 @@ VALUES
   (6,'Regular', 4, 0),(7,'Regular', 4, 0),(8,'Regular', 4, 0),(09,'Regular', 4, 0),(10,'Regular', 4, 0),
   (11,'Premium', 4, 0),(12,'Premium', 4, 0),(13,'Premium', 4, 0),(14,'Premium', 4, 0),(15,'Premium', 4, 0),
   (16,'Premium', 4, 0),(17,'Premium', 4, 0),(18,'Premium', 4, 0),(19,'Premium', 4, 0),(20,'Premium', 4, 0)
+
     
 
 

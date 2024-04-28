@@ -22,6 +22,8 @@
         "UI_/ui_form.py",
         "UI_/ui_RemoveMovie.py",
         "UI_/ui_userHome.py",
-        "UI_/ui_userLogin.py"
+        "UI_/ui_userLogin.py",
+        "UI/ReserveView.ui",
+        "UI_/ui_ReserveView.py"
     ]
 }

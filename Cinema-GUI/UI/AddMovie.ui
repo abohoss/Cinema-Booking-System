@@ -31,6 +31,12 @@
     <property name="text">
      <string>Add Movie</string>
     </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
    </widget>
    <widget class="QPushButton" name="Back">
     <property name="geometry">
