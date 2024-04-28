@@ -94,70 +94,8 @@ class MainWindow(QMainWindow):
         if self.ui.hallnum.currentData() ==1 or self.ui.hallnum.currentData() ==2:
             self.ui.reserveType.setText('Standard')
         else:
-            self.ui.reserveType.setText('Standard')
-        print(self.ui.time.currentData())
-        print(self.ui.date.currentData())
-        print(self.ui.hallnum.currentData())
-        self.disableBookedSeats()
-        self.ui.time.currentIndexChanged.connect(self.disableBookedSeats)
-        self.ui.date.currentIndexChanged.connect(self.disableBookedSeats)
-        self.ui.hallnum.currentIndexChanged.connect(self.disableBookedSeats)
+            self.ui.reserveType.setText('IMAX')
 
-        self.ui.hallnum.currentIndexChanged.connect(self.updateReserveType)
-        self.ui.confirmBook.clicked.connect(self.reserveSeats)
-
-    def updateShowTime(self):
-        print("Here")
-        show_times = listMovieShowTimes(self.cursor,self.movieName,self.ui.hallnum.currentData(),self.ui.date.currentData())
-        self.ui.time.clear()  # Clear the combobox before populating it
-        for index, showtime in enumerate(show_times):
-            self.ui.time.addItem(showtime)
-            self.ui.time.setItemData(index, showtime)  # Set the data for each item
-
-    def updateShowDate(self):
-        show_dates = listMovieShowDates(self.cursor,self.movieName,self.ui.hallnum.currentData())
-        self.ui.date.clear()  # Clear the combobox before populating it
-        for index, showdate in enumerate(show_dates):
-            self.ui.date.addItem(showdate)
-            self.ui.date.setItemData(index, showdate)  # Set the data for each item
-        self.updateShowTime()
-
-    def updateReserveType(self, index):
-        hall_id = self.ui.hallnum.currentData()
-        if hall_id == 1 or hall_id == 2:
-            reserve_type = 'Standard'
-        else:
-            reserve_type = 'IMAX'
-        self.ui.reserveType.setText(reserve_type)
-
-    def showReserve(self):
-        self.ui = ReserveView()
-        self.ui.setupUi(self)
-        self.ui.backBtn.clicked.connect(self.showUserLoginWindow)
-
-        hall_numbers = listMovieShowHalls(self.cursor,self.movieName)
-        self.ui.hallnum.clear()  # Clear the combobox before populating it
-        for index, hall_number in enumerate(hall_numbers):
-            self.ui.hallnum.addItem(str(hall_number))
-            self.ui.hallnum.setItemData(index, int(hall_number))  # Set the data as int
-        self.updateShowDate()
-        self.updateShowTime()
-        self.ui.hallnum.currentIndexChanged.connect(self.updateShowDate)
-
-        self.ui.date.currentIndexChanged.connect(self.updateShowTime)
-
-        payment_types = ['Credit Card','Fawry','Cash']
-        self.ui.ptype.clear()
-        for index, type in enumerate(payment_types):
-            self.ui.ptype.addItem(type)
-            self.ui.ptype.setItemData(index, type)  # Set the data for each item
-        if self.ui.hallnum.currentData() ==1 or self.ui.hallnum.currentData() ==2:
-            self.ui.reserveType.setText('Standard')
-        else:
-            self.ui.reserveType.setText('Standard')
-        print(self.ui.time.currentData())
-        print(self.ui.date.currentData())
-        print(self.ui.hallnum.currentData())
         self.disableBookedSeats()
         self.ui.time.currentIndexChanged.connect(self.disableBookedSeats)
         self.ui.date.currentIndexChanged.connect(self.disableBookedSeats)
@@ -290,15 +228,28 @@ class MainWindow(QMainWindow):
         self.ui.date.clear()
         self.ui.time.clear()
         self.ui.hallnum.clear()
+        movieNames = set()
+        halls = set()
+        dates = set()
+        times = set()
         for index, show in enumerate(shows):
-            self.ui.time.addItem(show[0])
-            self.ui.time.setItemData(index, show[0])
-            self.ui.date.addItem(show[1])
-            self.ui.date.setItemData(index, show[1])
-            self.ui.name.addItem(show[2])
-            self.ui.name.setItemData(index, show[2])
-            self.ui.hallnum.addItem(str(show[3]))
-            self.ui.hallnum.setItemData(index, show[3])
+            if show[0] not in times:
+                self.ui.time.addItem(show[0])
+                times.add(show[0])
+                self.ui.time.setItemData(index, show[0])
+            if show[1] not in dates:
+                self.ui.date.addItem(show[1])
+                dates.add(show[1])
+                self.ui.date.setItemData(index, show[1])
+            if show[2] not in movieNames:
+                self.ui.name.addItem(show[2])
+                movieNames.add(show[2])
+                print(movieNames)
+                self.ui.name.setItemData(index, show[2])
+            if show[3] not in halls:
+                self.ui.hallnum.addItem(str(show[3]))
+                halls.add(show[3])
+                self.ui.hallnum.setItemData(index, show[3])
 
     def confirmAddMovie(self):
         Name = self.ui.name.text()
@@ -366,17 +317,18 @@ class MainWindow(QMainWindow):
         ShowTime = self.ui.time.currentData()
         ShowDate = self.ui.date.currentData()
         HallId = self.ui.hallnum.currentData()
-        print(self.ui.time.currentData())
-        print(self.ui.date.currentData())
-        print(self.ui.hallnum.currentData())
+        for i in range(1, 21):
+            seat_button = getattr(self.ui, f"seat{i}")
+            seat_button.setEnabled(True)
+            seat_button.setChecked(False)
         booked_Seats = getBookedSeats(self.cursor, self.movieName, ShowDate, ShowTime, HallId)
-        print(booked_Seats)
+
         if not booked_Seats:
             return
         for i in booked_Seats:
             seat_button = getattr(self.ui, f"seat{i}")
             seat_button.setEnabled(False)
-
+            seat_button.setChecked(True)
 
 
 
@@ -406,77 +358,12 @@ class MainWindow(QMainWindow):
             self.ui.oLabel.setStyleSheet("color: green;")
             self.ui.oLabel.setText("Reservation Created Successfully")
             booked_Seats = getBookedSeats(self.cursor,self.movieName,ShowDate,ShowTime,HallId)
-            # print(booked_Seats)
             for i in booked_Seats:
                 seat_button = getattr(self.ui, f"seat{i}")
                 seat_button.setEnabled(False)
         except:
                 self.ui.oLabel.setStyleSheet("color: red;")
                 self.ui.oLabel.setText("Seats Already Taken")
-
-
-
-
-
-
-
-    def disableBookedSeats(self):
-        ShowTime = self.ui.time.currentData()
-        ShowDate = self.ui.date.currentData()
-        HallId = self.ui.hallnum.currentData()
-        print(self.ui.time.currentData())
-        print(self.ui.date.currentData())
-        print(self.ui.hallnum.currentData())
-        booked_Seats = getBookedSeats(self.cursor, self.movieName, ShowDate, ShowTime, HallId)
-        print(booked_Seats)
-        if not booked_Seats:
-            return
-        for i in booked_Seats:
-            seat_button = getattr(self.ui, f"seat{i}")
-            seat_button.setEnabled(False)
-
-
-
-
-    def reserveSeats(self):
-        ShowTime = self.ui.time.currentData()
-        ShowDate = self.ui.date.currentData()
-        HallId = self.ui.hallnum.currentData()
-        paymentType = self.ui.ptype.currentData()
-        if(HallId == 1 or HallId ==2):
-            ReserveType = 'Standard'
-        else:
-            ReserveType = 'IMAX'
-
-        Seats_List = []
-        for i in range(1, 21):
-            seat_button = getattr(self.ui, f"seat{i}")
-            if seat_button.isChecked():
-                Seats_List.append(str(i))
-
-        if not Seats_List:
-            self.ui.oLabel.setStyleSheet("color: red;")
-            self.ui.oLabel.setText("Please Select a Seat")
-            return
-                
-        try:
-            ReserveTicket(self.email,ShowTime,ShowDate,HallId,self.movieName,Seats_List,ReserveType,paymentType,self.cursor)
-            self.ui.oLabel.setStyleSheet("color: green;")
-            self.ui.oLabel.setText("Reservation Created Successfully")
-            booked_Seats = getBookedSeats(self.cursor,self.movieName,ShowDate,ShowTime,HallId)
-            # print(booked_Seats)
-            for i in booked_Seats:
-                seat_button = getattr(self.ui, f"seat{i}")
-                seat_button.setEnabled(False)
-        except:
-                self.ui.oLabel.setStyleSheet("color: red;")
-                self.ui.oLabel.setText("Seats Already Taken")
-
-
-
-
-
-
 
 
     def performEmpLogin(self):
