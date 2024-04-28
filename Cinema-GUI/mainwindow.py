@@ -601,5 +601,7 @@ class MainWindow(QMainWindow):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     widget = MainWindow()
+    widget.setWindowTitle("Cinema Booking System")
+    widget.setWindowIcon(QIcon("cinema.ico"))
     widget.show()
     sys.exit(app.exec())

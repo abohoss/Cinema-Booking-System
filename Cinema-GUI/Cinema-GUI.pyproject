@@ -32,6 +32,7 @@
         "UI/success.ui",
         "UI_/ui_success.py",
         "UI_/ui_MovieRating.py",
-        "UI/MovieRating.ui"
+        "UI/MovieRating.ui",
+        "cinema.ico"
     ]
 }
