@@ -94,13 +94,13 @@ class MainWindow(QMainWindow):
         if not comm:
             self.ui.label_6.setStyleSheet("color: red;")
             self.ui.label_6.setText("Comment Field is Empty")
-        # try:
-        add_rating(Name, self.email ,rate, comm, self.cursor)
-        self.ui.label_6.setStyleSheet("color: green;")
-        self.ui.label_6.setText("Rating Added Successfully")
-        # except:
-        #     self.ui.label_6.setStyleSheet("color: red;")
-        #     self.ui.label_6.setText("You already rated the movie!")
+        try:
+            add_rating(Name, self.email ,rate, comm, self.cursor)
+            self.ui.label_6.setStyleSheet("color: green;")
+            self.ui.label_6.setText("Rating Added Successfully")
+        except:
+            self.ui.label_6.setStyleSheet("color: red;")
+            self.ui.label_6.setText("You already rated the movie!")
 
 
     def setMovieName(self, movie_name):
